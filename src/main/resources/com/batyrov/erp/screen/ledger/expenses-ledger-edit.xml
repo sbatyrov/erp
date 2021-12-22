@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://jmix.io/schema/ui/window"
+        xmlns:dynattr="http://jmix.io/schema/dynattr/ui"
+        caption="msg://expensesLedgerEdit.caption"
+        focusComponent="form">
+    <data>
+        <instance id="expensesLedgerDc"
+                  class="com.batyrov.erp.entity.ledger.ExpensesLedger">
+            <fetchPlan extends="_base">
+                <property name="costCategory" fetchPlan="_base"/>
+                <property name="costCentre" fetchPlan="_base"/>
+                <property name="document" fetchPlan="_base"/>
+                <property name="project" fetchPlan="_base">
+                    <property name="contract" fetchPlan="_base">
+                        <property name="parthner" fetchPlan="_base">
+                            <property name="persons" fetchPlan="_base"/>
+                        </property>
+                        <property name="company" fetchPlan="_base"/>
+                        <property name="currency" fetchPlan="_base"/>
+                        <property name="projects" fetchPlan="_base"/>
+                    </property>
+                    <property name="businessUnit" fetchPlan="_base"/>
+                    <property name="projectType" fetchPlan="_base"/>
+                </property>
+                <property name="currency" fetchPlan="_base"/>
+                <property name="parthner"/>
+            </fetchPlan>
+            <loader/>
+        </instance>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <dynattr:dynamicAttributes/>
+        <screenSettings id="settingsFacet" auto="true"/>
+    </facets>
+    <actions>
+        <action id="windowCommitAndClose" caption="msg:///actions.Ok"
+                icon="EDITOR_OK"
+                primary="true"
+                shortcut="${COMMIT_SHORTCUT}"/>
+        <action id="windowClose"
+                caption="msg:///actions.Close"
+                icon="EDITOR_CANCEL"/>
+    </actions>
+    <dialogMode height="600"
+                width="800"/>
+    <layout spacing="true" expand="editActions">
+        <form id="form" dataContainer="expensesLedgerDc">
+            <column width="350px">
+                <dateField id="dateField" property="date"/>
+                <entityPicker id="documentField" property="document">
+                    <actions>
+                        <action id="entityLookup" type="entity_lookup"/>
+                        <action id="entityClear" type="entity_clear"/>
+                    </actions>
+                </entityPicker>
+                <entityPicker id="projectField" property="project">
+                    <actions>
+                        <action id="entityLookup" type="entity_lookup"/>
+                        <action id="entityClear" type="entity_clear"/>
+                    </actions>
+                </entityPicker>
+                <entityPicker id="currencyField" property="currency">
+                    <actions>
+                        <action id="entityLookup" type="entity_lookup"/>
+                        <action id="entityClear" type="entity_clear"/>
+                    </actions>
+                </entityPicker>
+                <textField id="amountField" property="amount"/>
+                <entityPicker id="costCategoryField" property="costCategory">
+                    <actions>
+                        <action id="entityLookup" type="entity_lookup"/>
+                        <action id="entityClear" type="entity_clear"/>
+                    </actions>
+                </entityPicker>
+                <entityPicker id="costCentreField" property="costCentre">
+                    <actions>
+                        <action id="entityLookup" type="entity_lookup"/>
+                        <action id="entityClear" type="entity_clear"/>
+                    </actions>
+                </entityPicker>
+                <entityPicker id="parthnerField" property="parthner"/>
+            </column>
+        </form>
+        <hbox id="editActions" spacing="true">
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="closeBtn" action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

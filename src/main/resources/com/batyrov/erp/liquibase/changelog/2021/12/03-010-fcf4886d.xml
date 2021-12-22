@@ -1,0 +1,795 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1" author="erp">
+        <createTable tableName="ERP_ACCOUNT_INSTANCE">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ERP_ACCOUNT_INSTANCE"/>
+            </column>
+            <column name="NAME" type="VARCHAR(255)"/>
+            <column name="TYPE_" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="2" author="erp">
+        <createTable tableName="ERP_ACCOUNT_LEDGER">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ERP_ACCOUNT_LEDGER"/>
+            </column>
+            <column name="ACCOUNT_INSTANCE_ID" type="UUID"/>
+            <column name="AMOUNT" type="DECIMAL(19, 2)"/>
+            <column name="TYPE_" type="BOOLEAN"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="3" author="erp">
+        <createTable tableName="ERP_BANK_ACCOUNT">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ERP_BANK_ACCOUNT"/>
+            </column>
+            <column name="NAME" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="4" author="erp">
+        <createTable tableName="ERP_BUSINESS_UNIT">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ERP_BUSINESS_UNIT"/>
+            </column>
+            <column name="NAME" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="5" author="erp">
+        <createTable tableName="ERP_COMPANY">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ERP_COMPANY"/>
+            </column>
+            <column name="NAME" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="6" author="erp">
+        <createTable tableName="ERP_CONTRACT">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ERP_CONTRACT"/>
+            </column>
+            <column name="PARTHNER_ID" type="UUID"/>
+            <column name="COMPANY_ID" type="UUID"/>
+            <column name="NAME" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CONTRACT" type="VARCHAR(1024)"/>
+            <column name="AMOUNT" type="DECIMAL(19, 2)"/>
+            <column name="CURRENCY_ID" type="UUID"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="7" author="erp">
+        <createTable tableName="ERP_CONTRACT_ORDER">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ERP_CONTRACT_ORDER"/>
+            </column>
+            <column name="NAME" type="VARCHAR(255)"/>
+            <column name="ORDER_FILE" type="VARCHAR(1024)"/>
+            <column name="CONTRACT_ID" type="UUID"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="8" author="erp">
+        <createTable tableName="ERP_COST_CATEGORY">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ERP_COST_CATEGORY"/>
+            </column>
+            <column name="NAME" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="9" author="erp">
+        <createTable tableName="ERP_COST_CENTRE">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ERP_COST_CENTRE"/>
+            </column>
+            <column name="OWNER_ID" type="UUID"/>
+            <column name="NAME" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="10" author="erp">
+        <createTable tableName="ERP_CURRENCY">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ERP_CURRENCY"/>
+            </column>
+            <column name="NAME" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="11" author="erp">
+        <createTable tableName="ERP_DOCUMENT">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ERP_DOCUMENT"/>
+            </column>
+            <column name="DTYPE" type="VARCHAR(31)"/>
+            <column name="DATE_" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="IS_ACTIVE" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="AMOUNT" type="DECIMAL(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CURRENCY_ID" type="UUID"/>
+            <column name="USER_ID" type="UUID"/>
+            <column name="WALLET_ID" type="UUID"/>
+            <column name="PROJECT_ID" type="UUID"/>
+            <column name="PARTHNER_ID" type="UUID"/>
+            <column name="COST_CATEGORY_ID" type="UUID"/>
+            <column name="COST_CENTRE_ID" type="UUID"/>
+            <column name="INCOME_CATEGORY_ID" type="UUID"/>
+            <column name="INVOICE" type="VARCHAR(1024)"/>
+            <column name="PERSON_ID" type="UUID"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="12" author="erp">
+        <createTable tableName="ERP_EXPENSES_LEDGER">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ERP_EXPENSES_LEDGER"/>
+            </column>
+            <column name="COST_CATEGORY_ID" type="UUID"/>
+            <column name="COST_CENTRE_ID" type="UUID"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="13" author="erp">
+        <createTable tableName="ERP_FINANCIAL_LEDGER">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ERP_FINANCIAL_LEDGER"/>
+            </column>
+            <column name="PROJECT_ID" type="UUID"/>
+            <column name="CURRENCY_ID" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PARTHNER_ID" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="AMOUNT" type="DECIMAL(19, 2)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="14" author="erp">
+        <createTable tableName="ERP_INCOME_CATEGORY">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ERP_INCOME_CATEGORY"/>
+            </column>
+            <column name="NAME" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="15" author="erp">
+        <createTable tableName="ERP_INCOME_LEDGER">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ERP_INCOME_LEDGER"/>
+            </column>
+            <column name="INCOME_CATEGORY_ID" type="UUID"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="16" author="erp">
+        <createTable tableName="ERP_LEDGER">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ERP_LEDGER"/>
+            </column>
+            <column name="DTYPE" type="VARCHAR(31)"/>
+            <column name="DATE_" type="DATETIME"/>
+            <column name="DOCUMENT_ID" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="17" author="erp">
+        <createTable tableName="ERP_PARTHNER">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ERP_PARTHNER"/>
+            </column>
+            <column name="NAME" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="18" author="erp">
+        <createTable tableName="ERP_PARTHNER_LEDGER">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ERP_PARTHNER_LEDGER"/>
+            </column>
+            <column name="PARTHNER_ID" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MONTH_" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="YEAR_" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="START_BALANCE" type="DECIMAL(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="INCOME" type="DECIMAL(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OUTCOME" type="DECIMAL(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="END_BALANCE" type="DECIMAL(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="19" author="erp">
+        <createTable tableName="ERP_PERSON">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ERP_PERSON"/>
+            </column>
+            <column name="NAME" type="VARCHAR(255)"/>
+            <column name="USER_ID" type="UUID"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="20" author="erp">
+        <createTable tableName="ERP_PERSON_PARTHNER_LINK">
+            <column name="PARTHNER_ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ERP_PERSON_PARTHNER_LINK"/>
+            </column>
+            <column name="PERSON_ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ERP_PERSON_PARTHNER_LINK"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="21" author="erp">
+        <createTable tableName="ERP_PROJECT">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ERP_PROJECT"/>
+            </column>
+            <column name="NAME" type="VARCHAR(255)"/>
+            <column name="BUSINESS_UNIT_ID" type="UUID"/>
+            <column name="PROJECT_TYPE_ID" type="UUID"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="22" author="erp">
+        <createTable tableName="ERP_PROJECT_CONTRACT_LINK">
+            <column name="CONTRACT_ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ERP_PROJECT_CONTRACT_LINK"/>
+            </column>
+            <column name="PROJECT_ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ERP_PROJECT_CONTRACT_LINK"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="23" author="erp">
+        <createTable tableName="ERP_PROJECT_TYPE">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ERP_PROJECT_TYPE"/>
+            </column>
+            <column name="NAME" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="24" author="erp">
+        <createTable tableName="ERP_REQUEST_FOR_CASH">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ERP_REQUEST_FOR_CASH"/>
+            </column>
+            <column name="PERSON_ID" type="UUID"/>
+            <column name="PARTNER_ID" type="UUID"/>
+            <column name="AMOUNT" type="DECIMAL(19, 2)"/>
+            <column name="CONTRACT_ORDER_ID" type="UUID"/>
+            <column name="CONTRACT_ID" type="UUID"/>
+            <column name="PROJECT_ID" type="UUID"/>
+            <column name="COST_CENTRE_ID" type="UUID"/>
+            <column name="COST_CATEGORY_ID" type="UUID"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="25" author="erp">
+        <createTable tableName="ERP_REQUEST_FOR_PURCHASE">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ERP_REQUEST_FOR_PURCHASE"/>
+            </column>
+            <column name="AMOUNT" type="DECIMAL(19, 2)"/>
+            <column name="CONTRACT_ORDER_ID" type="UUID"/>
+            <column name="CONTRACT_ID" type="UUID"/>
+            <column name="PROJECT_ID" type="UUID"/>
+            <column name="COST_CENTRE_ID" type="UUID"/>
+            <column name="COST_CATEGORY_ID" type="UUID"/>
+            <column name="DESCRIPTION" type="CLOB"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="26" author="erp">
+        <createTable tableName="ERP_REQUEST_FOR_PURCHASE_DETAI">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ERPREQUESTFORPURCHASEDETAI"/>
+            </column>
+            <column name="REQUEST_ID" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="WARE_ID" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="COUNT_" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="27" author="erp">
+        <createTable tableName="ERP_USER">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ERP_USER"/>
+            </column>
+            <column name="VERSION" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="USERNAME" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PASSWORD" type="VARCHAR(255)"/>
+            <column name="FIRST_NAME" type="VARCHAR(255)"/>
+            <column name="LAST_NAME" type="VARCHAR(255)"/>
+            <column name="EMAIL" type="VARCHAR(255)"/>
+            <column name="ACTIVE" type="BOOLEAN"/>
+            <column name="TIME_ZONE_ID" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="28" author="erp">
+        <createTable tableName="ERP_WALLET">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ERP_WALLET"/>
+            </column>
+            <column name="NAME" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="29" author="erp">
+        <createTable tableName="ERP_WALLET_CATEGORY">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ERP_WALLET_CATEGORY"/>
+            </column>
+            <column name="NAME" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="30" author="erp">
+        <createTable tableName="ERP_WARE">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ERP_WARE"/>
+            </column>
+            <column name="NAME" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="31" author="erp">
+        <createTable tableName="ERP_WAREHOUSE">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ERP_WAREHOUSE"/>
+            </column>
+            <column name="OWNER_ID" type="UUID"/>
+            <column name="RESPONSIBLE_ID" type="UUID"/>
+            <column name="NAME" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="32" author="erp">
+        <createTable tableName="ERP_WAREHOUSE_LEDGER">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ERP_WAREHOUSE_LEDGER"/>
+            </column>
+            <column name="WARE_COUNT" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="WARE_ID" type="UUID"/>
+            <column name="WARE_SERIAL_ID" type="UUID"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="33" author="erp">
+        <createTable tableName="ERP_WARE_SERIAL">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ERP_WARE_SERIAL"/>
+            </column>
+            <column name="SERIAL" type="VARCHAR(255)"/>
+            <column name="WARE_ID" type="UUID"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="34" author="erp">
+        <createIndex indexName="IDX_ERP_REQUEST_FOR_PURCHASE_DETAIL_UNQ" tableName="ERP_REQUEST_FOR_PURCHASE_DETAI"
+                     unique="true">
+            <column name="REQUEST_ID"/>
+            <column name="WARE_ID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="35" author="erp">
+        <createIndex indexName="IDX_ERP_USER_ON_USERNAME" tableName="ERP_USER" unique="true">
+            <column name="USERNAME"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="36" author="erp">
+        <addForeignKeyConstraint baseColumnNames="ACCOUNT_INSTANCE_ID" baseTableName="ERP_ACCOUNT_LEDGER"
+                                 constraintName="FK_ERPACCOUNTL_ON_ACCOUNTINST" referencedColumnNames="ID"
+                                 referencedTableName="ERP_ACCOUNT_INSTANCE"/>
+
+        <createIndex indexName="IDX_ACCOUNTLEDGER" tableName="ERP_ACCOUNT_LEDGER">
+            <column name="ACCOUNT_INSTANCE_ID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="37" author="erp">
+        <addForeignKeyConstraint baseColumnNames="CONTRACT_ID" baseTableName="ERP_CONTRACT_ORDER"
+                                 constraintName="FK_ERPCONTRACTORDE_ON_CONTRACT" referencedColumnNames="ID"
+                                 referencedTableName="ERP_CONTRACT"/>
+
+        <createIndex indexName="IDX_CONTRACTORDER_CONTRACT_ID" tableName="ERP_CONTRACT_ORDER">
+            <column name="CONTRACT_ID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="38" author="erp">
+        <addForeignKeyConstraint baseColumnNames="COST_CATEGORY_ID" baseTableName="ERP_DOCUMENT"
+                                 constraintName="FK_ERPDOCUMENT_ON_COSTCATEGORY" referencedColumnNames="ID"
+                                 referencedTableName="ERP_COST_CATEGORY"/>
+    </changeSet>
+    <changeSet id="39" author="erp">
+        <addForeignKeyConstraint baseColumnNames="INCOME_CATEGORY_ID" baseTableName="ERP_DOCUMENT"
+                                 constraintName="FK_ERPDOCUMENT_ON_INCOMECATEGO" referencedColumnNames="ID"
+                                 referencedTableName="ERP_INCOME_CATEGORY"/>
+
+        <createIndex indexName="IDX_INCOMINGPAYMENT" tableName="ERP_DOCUMENT">
+            <column name="INCOME_CATEGORY_ID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="40" author="erp">
+        <addForeignKeyConstraint baseColumnNames="COST_CENTRE_ID" baseTableName="ERP_EXPENSES_LEDGER"
+                                 constraintName="FK_ERPEXPENSESLE_ON_COSTCENTRE" referencedColumnNames="ID"
+                                 referencedTableName="ERP_COST_CENTRE"/>
+    </changeSet>
+    <changeSet id="41" author="erp">
+        <addForeignKeyConstraint baseColumnNames="COST_CATEGORY_ID" baseTableName="ERP_EXPENSES_LEDGER"
+                                 constraintName="FK_ERPEXPENSES_ON_COSTCATEGOR" referencedColumnNames="ID"
+                                 referencedTableName="ERP_COST_CATEGORY"/>
+    </changeSet>
+    <changeSet id="42" author="erp">
+        <addForeignKeyConstraint baseColumnNames="PROJECT_ID" baseTableName="ERP_FINANCIAL_LEDGER"
+                                 constraintName="FK_ERPFINANCIALLEDG_ON_PROJECT" referencedColumnNames="ID"
+                                 referencedTableName="ERP_PROJECT"/>
+    </changeSet>
+    <changeSet id="43" author="erp">
+        <addForeignKeyConstraint baseColumnNames="CURRENCY_ID" baseTableName="ERP_FINANCIAL_LEDGER"
+                                 constraintName="FK_ERPFINANCIALLED_ON_CURRENCY" referencedColumnNames="ID"
+                                 referencedTableName="ERP_CURRENCY"/>
+    </changeSet>
+    <changeSet id="44" author="erp">
+        <addForeignKeyConstraint baseColumnNames="PARTHNER_ID" baseTableName="ERP_FINANCIAL_LEDGER"
+                                 constraintName="FK_ERPFINANCIALLED_ON_PARTHNER" referencedColumnNames="ID"
+                                 referencedTableName="ERP_PARTHNER"/>
+    </changeSet>
+    <changeSet id="45" author="erp">
+        <addForeignKeyConstraint baseColumnNames="INCOME_CATEGORY_ID" baseTableName="ERP_INCOME_LEDGER"
+                                 constraintName="FK_ERPINCOMELE_ON_INCOMECATEG" referencedColumnNames="ID"
+                                 referencedTableName="ERP_INCOME_CATEGORY"/>
+    </changeSet>
+    <changeSet id="46" author="erp">
+        <addForeignKeyConstraint baseColumnNames="PARTHNER_ID" baseTableName="ERP_PARTHNER_LEDGER"
+                                 constraintName="FK_ERPPARTHNERLEDG_ON_PARTHNER" referencedColumnNames="ID"
+                                 referencedTableName="ERP_PARTHNER"/>
+
+        <createIndex indexName="IDX_PARTHNERLEDGER" tableName="ERP_PARTHNER_LEDGER">
+            <column name="PARTHNER_ID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="47" author="erp">
+        <addForeignKeyConstraint baseColumnNames="PARTHNER_ID" baseTableName="ERP_PERSON_PARTHNER_LINK"
+                                 constraintName="FK_ERPPERPAR_ON_PARTHNER" referencedColumnNames="ID"
+                                 referencedTableName="ERP_PARTHNER"/>
+    </changeSet>
+    <changeSet id="48" author="erp">
+        <addForeignKeyConstraint baseColumnNames="PERSON_ID" baseTableName="ERP_PERSON_PARTHNER_LINK"
+                                 constraintName="FK_ERPPERPAR_ON_PERSON" referencedColumnNames="ID"
+                                 referencedTableName="ERP_PERSON"/>
+    </changeSet>
+    <changeSet id="49" author="erp">
+        <addForeignKeyConstraint baseColumnNames="CONTRACT_ID" baseTableName="ERP_PROJECT_CONTRACT_LINK"
+                                 constraintName="FK_ERPPROCON_ON_CONTRACT" referencedColumnNames="ID"
+                                 referencedTableName="ERP_CONTRACT"/>
+    </changeSet>
+    <changeSet id="50" author="erp">
+        <addForeignKeyConstraint baseColumnNames="PROJECT_ID" baseTableName="ERP_PROJECT_CONTRACT_LINK"
+                                 constraintName="FK_ERPPROCON_ON_PROJECT" referencedColumnNames="ID"
+                                 referencedTableName="ERP_PROJECT"/>
+    </changeSet>
+    <changeSet id="51" author="erp">
+        <addForeignKeyConstraint baseColumnNames="BUSINESS_UNIT_ID" baseTableName="ERP_PROJECT"
+                                 constraintName="FK_ERPPROJECT_ON_BUSINESSUNIT" referencedColumnNames="ID"
+                                 referencedTableName="ERP_BUSINESS_UNIT"/>
+
+        <createIndex indexName="IDX_PROJECT_BUSINESS_UNIT_ID" tableName="ERP_PROJECT">
+            <column name="BUSINESS_UNIT_ID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="52" author="erp">
+        <addForeignKeyConstraint baseColumnNames="PERSON_ID" baseTableName="ERP_REQUEST_FOR_CASH"
+                                 constraintName="FK_ERPREQUESTFORCASH_ON_PERSON" referencedColumnNames="ID"
+                                 referencedTableName="ERP_PERSON"/>
+
+        <createIndex indexName="IDX_REQUESTFORCASH_PERSON_ID" tableName="ERP_REQUEST_FOR_CASH">
+            <column name="PERSON_ID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="53" author="erp">
+        <addForeignKeyConstraint baseColumnNames="PARTNER_ID" baseTableName="ERP_REQUEST_FOR_CASH"
+                                 constraintName="FK_ERPREQUESTFORCAS_ON_PARTNER" referencedColumnNames="ID"
+                                 referencedTableName="ERP_PARTHNER"/>
+
+        <createIndex indexName="IDX_REQUESTFORCASH_PARTNER_ID" tableName="ERP_REQUEST_FOR_CASH">
+            <column name="PARTNER_ID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="54" author="erp">
+        <addForeignKeyConstraint baseColumnNames="PROJECT_ID" baseTableName="ERP_REQUEST_FOR_CASH"
+                                 constraintName="FK_ERPREQUESTFORCAS_ON_PROJECT" referencedColumnNames="ID"
+                                 referencedTableName="ERP_PROJECT"/>
+    </changeSet>
+    <changeSet id="55" author="erp">
+        <addForeignKeyConstraint baseColumnNames="CONTRACT_ID" baseTableName="ERP_REQUEST_FOR_CASH"
+                                 constraintName="FK_ERPREQUESTFORCA_ON_CONTRACT" referencedColumnNames="ID"
+                                 referencedTableName="ERP_CONTRACT"/>
+    </changeSet>
+    <changeSet id="56" author="erp">
+        <addForeignKeyConstraint baseColumnNames="WARE_ID" baseTableName="ERP_REQUEST_FOR_PURCHASE_DETAI"
+                                 constraintName="FK_ERPREQUESTFORPURCHA_ON_WARE" referencedColumnNames="ID"
+                                 referencedTableName="ERP_WARE"/>
+
+        <createIndex indexName="IDX_REQUESTFORPURCHASEDETAIL" tableName="ERP_REQUEST_FOR_PURCHASE_DETAI">
+            <column name="WARE_ID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="57" author="erp">
+        <addForeignKeyConstraint baseColumnNames="PROJECT_ID" baseTableName="ERP_REQUEST_FOR_PURCHASE"
+                                 constraintName="FK_ERPREQUESTFORPUR_ON_PROJECT" referencedColumnNames="ID"
+                                 referencedTableName="ERP_PROJECT"/>
+    </changeSet>
+    <changeSet id="58" author="erp">
+        <addForeignKeyConstraint baseColumnNames="REQUEST_ID" baseTableName="ERP_REQUEST_FOR_PURCHASE_DETAI"
+                                 constraintName="FK_ERPREQUESTFORPUR_ON_REQUEST" referencedColumnNames="ID"
+                                 referencedTableName="ERP_REQUEST_FOR_PURCHASE"/>
+    </changeSet>
+    <changeSet id="59" author="erp">
+        <addForeignKeyConstraint baseColumnNames="CONTRACT_ID" baseTableName="ERP_REQUEST_FOR_PURCHASE"
+                                 constraintName="FK_ERPREQUESTFORPU_ON_CONTRACT" referencedColumnNames="ID"
+                                 referencedTableName="ERP_CONTRACT"/>
+    </changeSet>
+    <changeSet id="60" author="erp">
+        <addForeignKeyConstraint baseColumnNames="COST_CENTRE_ID" baseTableName="ERP_REQUEST_FOR_PURCHASE"
+                                 constraintName="FK_ERPREQUESTFOR_ON_COSTCENTRE" referencedColumnNames="ID"
+                                 referencedTableName="ERP_COST_CENTRE"/>
+    </changeSet>
+    <changeSet id="61" author="erp">
+        <addForeignKeyConstraint baseColumnNames="COST_CENTRE_ID" baseTableName="ERP_REQUEST_FOR_CASH"
+                                 constraintName="FK_ERPREQUESTFOR_ON_COSTCENTREvrb5jK" referencedColumnNames="ID"
+                                 referencedTableName="ERP_COST_CENTRE"/>
+    </changeSet>
+    <changeSet id="62" author="erp">
+        <addForeignKeyConstraint baseColumnNames="CONTRACT_ORDER_ID" baseTableName="ERP_REQUEST_FOR_PURCHASE"
+                                 constraintName="FK_ERPREQUESTF_ON_CONTRACTORD" referencedColumnNames="ID"
+                                 referencedTableName="ERP_CONTRACT_ORDER"/>
+
+        <createIndex indexName="IDX_REQUESTFORPURCHASE" tableName="ERP_REQUEST_FOR_PURCHASE">
+            <column name="CONTRACT_ORDER_ID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="63" author="erp">
+        <addForeignKeyConstraint baseColumnNames="CONTRACT_ORDER_ID" baseTableName="ERP_REQUEST_FOR_CASH"
+                                 constraintName="FK_ERPREQUESTF_ON_CONTRACTORDYJPqyN" referencedColumnNames="ID"
+                                 referencedTableName="ERP_CONTRACT_ORDER"/>
+
+        <createIndex indexName="IDX_REQUESTFORCASH" tableName="ERP_REQUEST_FOR_CASH">
+            <column name="CONTRACT_ORDER_ID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="64" author="erp">
+        <addForeignKeyConstraint baseColumnNames="COST_CATEGORY_ID" baseTableName="ERP_REQUEST_FOR_PURCHASE"
+                                 constraintName="FK_ERPREQUESTF_ON_COSTCATEGOR" referencedColumnNames="ID"
+                                 referencedTableName="ERP_COST_CATEGORY"/>
+    </changeSet>
+    <changeSet id="65" author="erp">
+        <addForeignKeyConstraint baseColumnNames="COST_CATEGORY_ID" baseTableName="ERP_REQUEST_FOR_CASH"
+                                 constraintName="FK_ERPREQUESTF_ON_COSTCATEGORSIH3NA" referencedColumnNames="ID"
+                                 referencedTableName="ERP_COST_CATEGORY"/>
+    </changeSet>
+    <changeSet id="66" author="erp">
+        <addForeignKeyConstraint baseColumnNames="WARE_ID" baseTableName="ERP_WAREHOUSE_LEDGER"
+                                 constraintName="FK_ERPWAREHOUSELEDGER_ON_WARE" referencedColumnNames="ID"
+                                 referencedTableName="ERP_WARE"/>
+
+        <createIndex indexName="IDX_WAREHOUSELEDGER_WARE_ID" tableName="ERP_WAREHOUSE_LEDGER">
+            <column name="WARE_ID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="67" author="erp">
+        <addForeignKeyConstraint baseColumnNames="WARE_SERIAL_ID" baseTableName="ERP_WAREHOUSE_LEDGER"
+                                 constraintName="FK_ERPWAREHOUSEL_ON_WARESERIAL" referencedColumnNames="ID"
+                                 referencedTableName="ERP_WARE_SERIAL"/>
+
+        <createIndex indexName="IDX_WAREHOUSELEDGER" tableName="ERP_WAREHOUSE_LEDGER">
+            <column name="WARE_SERIAL_ID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="68" author="erp">
+        <addForeignKeyConstraint baseColumnNames="RESPONSIBLE_ID" baseTableName="ERP_WAREHOUSE"
+                                 constraintName="FK_ERPWAREHOUSE_ON_RESPONSIBLE" referencedColumnNames="ID"
+                                 referencedTableName="ERP_USER"/>
+
+        <createIndex indexName="IDX_WAREHOUSE_RESPONSIBLE_ID" tableName="ERP_WAREHOUSE">
+            <column name="RESPONSIBLE_ID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="69" author="erp">
+        <addForeignKeyConstraint baseColumnNames="COMPANY_ID" baseTableName="ERP_CONTRACT"
+                                 constraintName="FK_ERP_CONTRACT_ON_COMPANY" referencedColumnNames="ID"
+                                 referencedTableName="ERP_COMPANY"/>
+
+        <createIndex indexName="IDX_CONTRACT_COMPANY_ID" tableName="ERP_CONTRACT">
+            <column name="COMPANY_ID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="70" author="erp">
+        <addForeignKeyConstraint baseColumnNames="CURRENCY_ID" baseTableName="ERP_CONTRACT"
+                                 constraintName="FK_ERP_CONTRACT_ON_CURRENCY" referencedColumnNames="ID"
+                                 referencedTableName="ERP_CURRENCY"/>
+
+        <createIndex indexName="IDX_CONTRACT_CURRENCY_ID" tableName="ERP_CONTRACT">
+            <column name="CURRENCY_ID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="71" author="erp">
+        <addForeignKeyConstraint baseColumnNames="PARTHNER_ID" baseTableName="ERP_CONTRACT"
+                                 constraintName="FK_ERP_CONTRACT_ON_PARTHNER" referencedColumnNames="ID"
+                                 referencedTableName="ERP_PARTHNER"/>
+
+        <createIndex indexName="IDX_CONTRACT_PARTHNER_ID" tableName="ERP_CONTRACT">
+            <column name="PARTHNER_ID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="72" author="erp">
+        <addForeignKeyConstraint baseColumnNames="OWNER_ID" baseTableName="ERP_COST_CENTRE"
+                                 constraintName="FK_ERP_COST_CENTRE_ON_OWNER" referencedColumnNames="ID"
+                                 referencedTableName="ERP_USER"/>
+
+        <createIndex indexName="IDX_COSTCENTRE_OWNER_ID" tableName="ERP_COST_CENTRE">
+            <column name="OWNER_ID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="73" author="erp">
+        <addForeignKeyConstraint baseColumnNames="COST_CENTRE_ID" baseTableName="ERP_DOCUMENT"
+                                 constraintName="FK_ERP_DOCUMENT_ON_COST_CENTRE" referencedColumnNames="ID"
+                                 referencedTableName="ERP_COST_CENTRE"/>
+
+        <createIndex indexName="IDX_OUTCOMINGPAYMENT" tableName="ERP_DOCUMENT">
+            <column name="COST_CENTRE_ID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="74" author="erp">
+        <addForeignKeyConstraint baseColumnNames="CURRENCY_ID" baseTableName="ERP_DOCUMENT"
+                                 constraintName="FK_ERP_DOCUMENT_ON_CURRENCY" referencedColumnNames="ID"
+                                 referencedTableName="ERP_CURRENCY"/>
+
+        <createIndex indexName="IDX_FINANCIALDOCUMENT" tableName="ERP_DOCUMENT">
+            <column name="CURRENCY_ID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="75" author="erp">
+        <addForeignKeyConstraint baseColumnNames="PARTHNER_ID" baseTableName="ERP_DOCUMENT"
+                                 constraintName="FK_ERP_DOCUMENT_ON_PARTHNER" referencedColumnNames="ID"
+                                 referencedTableName="ERP_PARTHNER"/>
+
+        <createIndex indexName="IDX_PAYMENT_PARTHNER_ID" tableName="ERP_DOCUMENT">
+            <column name="PARTHNER_ID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="76" author="erp">
+        <addForeignKeyConstraint baseColumnNames="PERSON_ID" baseTableName="ERP_DOCUMENT"
+                                 constraintName="FK_ERP_DOCUMENT_ON_PERSON" referencedColumnNames="ID"
+                                 referencedTableName="ERP_PERSON"/>
+
+        <createIndex indexName="IDX_INCOMINGCASHPAYMENT" tableName="ERP_DOCUMENT">
+            <column name="PERSON_ID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="77" author="erp">
+        <addForeignKeyConstraint baseColumnNames="PROJECT_ID" baseTableName="ERP_DOCUMENT"
+                                 constraintName="FK_ERP_DOCUMENT_ON_PROJECT" referencedColumnNames="ID"
+                                 referencedTableName="ERP_PROJECT"/>
+
+        <createIndex indexName="IDX_PAYMENT_PROJECT_ID" tableName="ERP_DOCUMENT">
+            <column name="PROJECT_ID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="78" author="erp">
+        <addForeignKeyConstraint baseColumnNames="USER_ID" baseTableName="ERP_DOCUMENT"
+                                 constraintName="FK_ERP_DOCUMENT_ON_USER" referencedColumnNames="ID"
+                                 referencedTableName="ERP_USER"/>
+
+        <createIndex indexName="IDX_ADVANCEPAYMENT_USER_ID" tableName="ERP_DOCUMENT">
+            <column name="USER_ID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="79" author="erp">
+        <addForeignKeyConstraint baseColumnNames="WALLET_ID" baseTableName="ERP_DOCUMENT"
+                                 constraintName="FK_ERP_DOCUMENT_ON_WALLET" referencedColumnNames="ID"
+                                 referencedTableName="ERP_WALLET"/>
+    </changeSet>
+    <changeSet id="80" author="erp">
+        <addForeignKeyConstraint baseColumnNames="ID" baseTableName="ERP_EXPENSES_LEDGER"
+                                 constraintName="FK_ERP_EXPENSES_LEDGER_ON_ID" referencedColumnNames="ID"
+                                 referencedTableName="ERP_LEDGER"/>
+    </changeSet>
+    <changeSet id="81" author="erp">
+        <addForeignKeyConstraint baseColumnNames="ID" baseTableName="ERP_FINANCIAL_LEDGER"
+                                 constraintName="FK_ERP_FINANCIAL_LEDGER_ON_ID" referencedColumnNames="ID"
+                                 referencedTableName="ERP_LEDGER"/>
+    </changeSet>
+    <changeSet id="82" author="erp">
+        <addForeignKeyConstraint baseColumnNames="ID" baseTableName="ERP_INCOME_LEDGER"
+                                 constraintName="FK_ERP_INCOME_LEDGER_ON_ID" referencedColumnNames="ID"
+                                 referencedTableName="ERP_LEDGER"/>
+    </changeSet>
+    <changeSet id="83" author="erp">
+        <addForeignKeyConstraint baseColumnNames="DOCUMENT_ID" baseTableName="ERP_LEDGER"
+                                 constraintName="FK_ERP_LEDGER_ON_DOCUMENT" onDelete="CASCADE"
+                                 referencedColumnNames="ID" referencedTableName="ERP_DOCUMENT"/>
+
+        <createIndex indexName="IDX_LEDGER_DOCUMENT_ID" tableName="ERP_LEDGER">
+            <column name="DOCUMENT_ID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="84" author="erp">
+        <addForeignKeyConstraint baseColumnNames="USER_ID" baseTableName="ERP_PERSON"
+                                 constraintName="FK_ERP_PERSON_ON_USER" referencedColumnNames="ID"
+                                 referencedTableName="ERP_USER"/>
+
+        <createIndex indexName="IDX_PERSON_USER_ID" tableName="ERP_PERSON">
+            <column name="USER_ID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="85" author="erp">
+        <addForeignKeyConstraint baseColumnNames="PROJECT_TYPE_ID" baseTableName="ERP_PROJECT"
+                                 constraintName="FK_ERP_PROJECT_ON_PROJECT_TYPE" referencedColumnNames="ID"
+                                 referencedTableName="ERP_PROJECT_TYPE"/>
+
+        <createIndex indexName="IDX_PROJECT_PROJECT_TYPE_ID" tableName="ERP_PROJECT">
+            <column name="PROJECT_TYPE_ID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="86" author="erp">
+        <addForeignKeyConstraint baseColumnNames="OWNER_ID" baseTableName="ERP_WAREHOUSE"
+                                 constraintName="FK_ERP_WAREHOUSE_ON_OWNER" referencedColumnNames="ID"
+                                 referencedTableName="ERP_USER"/>
+
+        <createIndex indexName="IDX_WAREHOUSE_OWNER_ID" tableName="ERP_WAREHOUSE">
+            <column name="OWNER_ID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="87" author="erp">
+        <addForeignKeyConstraint baseColumnNames="WARE_ID" baseTableName="ERP_WARE_SERIAL"
+                                 constraintName="FK_ERP_WARE_SERIAL_ON_WARE" referencedColumnNames="ID"
+                                 referencedTableName="ERP_WARE"/>
+
+        <createIndex indexName="IDX_WARESERIAL_WARE_ID" tableName="ERP_WARE_SERIAL">
+            <column name="WARE_ID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="88" author="erp">
+        <dropTable cascadeConstraints="true" tableName="user_"/>
+    </changeSet>
+
+    <changeSet id="89" author="erp">
+
+        <insert tableName="ERP_USER" dbms="postgresql, mssql, hsqldb">
+            <column name="ID" value="60885987-1b61-4247-94c7-dff348347f93"/>
+            <column name="VERSION" value="1"/>
+            <column name="USERNAME" value="admin"/>
+            <column name="PASSWORD" value="{noop}admin"/>
+            <column name="ACTIVE" valueBoolean="true"/>
+        </insert>
+
+        <insert tableName="ERP_USER" dbms="oracle, mysql, mariadb">
+            <column name="ID" value="608859871b61424794c7dff348347f93"/>
+            <column name="VERSION" value="1"/>
+            <column name="USERNAME" value="admin"/>
+            <column name="PASSWORD" value="{noop}admin"/>
+            <column name="ACTIVE" valueBoolean="true"/>
+        </insert>
+
+    </changeSet>
+</databaseChangeLog>

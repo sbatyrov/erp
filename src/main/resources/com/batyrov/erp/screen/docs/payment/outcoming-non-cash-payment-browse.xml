@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://jmix.io/schema/ui/window"
+        xmlns:c="http://jmix.io/schema/ui/jpql-condition"
+        xmlns:dynattr="http://jmix.io/schema/dynattr/ui"
+        caption="msg://outcomingNonCashPaymentBrowse.caption"
+        focusComponent="outcomingNonCashPaymentsTable">
+    <data readOnly="true">
+        <collection id="outcomingNonCashPaymentsDc"
+                    class="com.batyrov.erp.entity.docs.OutcomingNonCashPayment">
+            <fetchPlan extends="_base">
+                <property name="currency" fetchPlan="_base"/>
+                <property name="project" fetchPlan="_base">
+                    <property name="contract" fetchPlan="_base"/>
+                    <property name="businessUnit" fetchPlan="_base"/>
+                    <property name="projectType" fetchPlan="_base"/>
+                </property>
+                <property name="parthner" fetchPlan="_base">
+                    <property name="persons" fetchPlan="_base"/>
+                </property>
+                <property name="costCategory" fetchPlan="_base"/>
+                <property name="costCentre"/>
+            </fetchPlan>
+            <loader id="outcomingNonCashPaymentsDl">
+                <query>
+                    <![CDATA[select e from erp_OutcomingNonCashPayment e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <dynattr:dynamicAttributes/>
+        <screenSettings id="settingsFacet" auto="true"/>
+    </facets>
+    <actions>
+        <action id="lookupSelectAction"
+                caption="msg:///actions.Select"
+                icon="LOOKUP_OK"
+                primary="true"
+                shortcut="${COMMIT_SHORTCUT}"/>
+        <action id="lookupCancelAction"
+                caption="msg:///actions.Cancel"
+                icon="LOOKUP_CANCEL"/>
+    </actions>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="outcomingNonCashPaymentsTable" spacing="true">
+        <filter id="filter"
+                dataLoader="outcomingNonCashPaymentsDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="outcomingNonCashPaymentsTable"
+                    width="100%"
+                    dataContainer="outcomingNonCashPaymentsDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="date"/>
+                <column id="isActive"/>
+                <column id="amount"/>
+                <column id="currency"/>
+                <column id="project"/>
+                <column id="parthner"/>
+                <column id="costCategory"/>
+                <column id="invoice"/>
+                <column id="costCentre"/>
+            </columns>
+            <simplePagination/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="outcomingNonCashPaymentsTable.create"/>
+                <button id="editBtn" action="outcomingNonCashPaymentsTable.edit"/>
+                <button id="removeBtn" action="outcomingNonCashPaymentsTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

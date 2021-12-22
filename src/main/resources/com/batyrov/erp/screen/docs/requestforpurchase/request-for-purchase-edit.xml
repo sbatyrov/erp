@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://jmix.io/schema/ui/window"
+        xmlns:dynattr="http://jmix.io/schema/dynattr/ui"
+        caption="msg://requestForPurchaseEdit.caption"
+        focusComponent="form">
+    <data>
+        <instance id="requestForPurchaseDc"
+                  class="com.batyrov.erp.entity.docs.RequestForPurchase">
+            <fetchPlan extends="_base">
+                <property name="contractOrder" fetchPlan="_base"/>
+                <property name="contract" fetchPlan="_base">
+                    <property name="parthner" fetchPlan="_base"/>
+                    <property name="company" fetchPlan="_base"/>
+                    <property name="currency" fetchPlan="_base"/>
+                    <property name="projects" fetchPlan="_base"/>
+                </property>
+                <property name="project" fetchPlan="_base">
+                    <property name="contract" fetchPlan="_base"/>
+                    <property name="businessUnit" fetchPlan="_base"/>
+                    <property name="projectType" fetchPlan="_base"/>
+                </property>
+                <property name="costCentre" fetchPlan="_base"/>
+                <property name="costCategory" fetchPlan="_base"/>
+            </fetchPlan>
+            <loader/>
+            <collection id="requestForPurchaseDetailDc" property="wares" />
+        </instance>        
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <dynattr:dynamicAttributes/>
+        <screenSettings id="settingsFacet" auto="true"/>
+    </facets>
+    <actions>
+        <action id="windowCommitAndClose" caption="msg:///actions.Ok"
+                icon="EDITOR_OK"
+                primary="true"
+                shortcut="${COMMIT_SHORTCUT}"/>
+        <action id="windowClose"
+                caption="msg:///actions.Close"
+                icon="EDITOR_CANCEL"/>
+    </actions>
+    <dialogMode height="600"
+                width="800"/>
+    <layout spacing="true" expand="editActions">
+        <tabSheet id="tabSheet">
+            <tab id="main" caption="msg://request-for-purchase-edit-caption">
+                <form id="form" dataContainer="requestForPurchaseDc">
+                    <column width="350px">
+                        <textField id="amountField" property="amount"/>
+                        <entityPicker id="contractOrderField" property="contractOrder">
+                            <actions>
+                                <action id="entityLookup" type="entity_lookup"/>
+                                <action id="entityClear" type="entity_clear"/>
+                            </actions>
+                        </entityPicker>
+                        <entityPicker id="contractField" property="contract">
+                            <actions>
+                                <action id="entityLookup" type="entity_lookup"/>
+                                <action id="entityClear" type="entity_clear"/>
+                            </actions>
+                        </entityPicker>
+                        <entityPicker id="projectField" property="project">
+                            <actions>
+                                <action id="entityLookup" type="entity_lookup"/>
+                                <action id="entityClear" type="entity_clear"/>
+                            </actions>
+                        </entityPicker>
+                        <entityPicker id="costCentreField" property="costCentre">
+                            <actions>
+                                <action id="entityLookup" type="entity_lookup"/>
+                                <action id="entityClear" type="entity_clear"/>
+                            </actions>
+                        </entityPicker>
+                        <entityPicker id="costCategoryField" property="costCategory">
+                            <actions>
+                                <action id="entityLookup" type="entity_lookup"/>
+                                <action id="entityClear" type="entity_clear"/>
+                            </actions>
+                        </entityPicker>
+                        <textArea id="descriptionField" property="description" rows="5"/>
+                    </column>
+                </form>
+            </tab>
+            <tab id="wareListTab" spacing="true" margin="true" caption="msg://wareListTabCaption">
+                <groupTable id="waresTable" dataContainer="requestForPurchaseDetailDc"  width="100%" height="100%" >
+                    <actions>
+                        <action id="create" type="create"/>
+                        <action id="edit" type="edit"/>
+                        <action id="remove" type="remove"/>
+                    </actions>
+                    <columns>
+                        <column id="ware"></column>
+                        <column id="count"></column>
+                    </columns>
+                    <buttonsPanel id="buttonsPanel"
+                                  alwaysVisible="true">
+                        <button id="createBtn" action="waresTable.create"/>
+                        <button id="editBtn" action="waresTable.edit"/>
+                        <button id="removeBtn" action="waresTable.remove"/>
+                    </buttonsPanel>
+                </groupTable>
+            </tab>
+        </tabSheet>
+        <hbox id="editActions" spacing="true">
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="closeBtn" action="windowClose"/>
+        </hbox>
+    </layout>
+</window>
