@@ -13,7 +13,8 @@ import javax.validation.constraints.NotNull
 @Table(name = "ERP_REQUEST_FOR_PURCHASE_DETAI", indexes = [
     Index(name = "IDX_REQUESTFORPURCHASEDETAIL", columnList = "REQUEST_ID"),
     Index(name = "IDX_REQUESTFORPURCHASEDETAIL", columnList = "WARE_ID"),
-    Index(name = "IDX_ERP_REQUEST_FOR_PURCHASE_DETAIL_UNQ", columnList = "REQUEST_ID, WARE_ID", unique = true)
+    Index(name = "IDX_ERP_REQUEST_FOR_PURCHASE_DETAIL_UNQ", columnList = "REQUEST_ID, WARE_ID", unique = true),
+    Index(name = "IDX_REQUESTFORPURCHASEDETAIL", columnList = "REQUEST_ID")
 ])
 @Entity(name = "erp_RequestForPurchaseDetail")
 open class RequestForPurchaseDetail {
@@ -24,17 +25,17 @@ open class RequestForPurchaseDetail {
 
     @NotNull
     @OnDeleteInverse(DeletePolicy.DENY)
-    @JoinColumn(name = "REQUEST_ID", nullable = false)
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    var request: RequestForPurchase? = null
-
-    @NotNull
-    @OnDeleteInverse(DeletePolicy.DENY)
     @JoinColumn(name = "WARE_ID", nullable = false)
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     var ware: Ware? = null
 
+    @OnDeleteInverse(DeletePolicy.CASCADE)
+    @JoinColumn(name = "REQUEST_ID")
+    @ManyToOne(fetch = FetchType.LAZY)
+    var request: RequestForOutcome? = null
+
     @NotNull(message = "count cannot be null")
     @Column(name = "COUNT_", nullable = false)
     var count: Int? = null
+
 }

@@ -21,6 +21,7 @@
                 </property>
                 <property name="costCentre" fetchPlan="_base"/>
                 <property name="costCategory" fetchPlan="_base"/>
+                <property name="wares" fetchPlan="_base"/>
             </fetchPlan>
             <loader/>
             <collection id="requestForPurchaseDetailDc" property="wares" />
@@ -82,7 +83,7 @@
                     </column>
                 </form>
             </tab>
-            <tab id="wareListTab" spacing="true" margin="true" caption="msg://wareListTabCaption">
+            <tab id="wareListTab" spacing="true" margin="true" caption="msg://wareListTabCaption" enable="true">
                 <groupTable id="waresTable" dataContainer="requestForPurchaseDetailDc"  width="100%" height="100%" >
                     <actions>
                         <action id="create" type="create"/>
@@ -90,7 +91,7 @@
                         <action id="remove" type="remove"/>
                     </actions>
                     <columns>
-                        <column id="ware"></column>
+                        <column id="ware.name" ></column>
                         <column id="count"></column>
                     </columns>
                     <buttonsPanel id="buttonsPanel"
@@ -103,7 +104,7 @@
             </tab>
         </tabSheet>
         <hbox id="editActions" spacing="true">
-            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="commitAndCloseBtn" action="windowCommitAndClose" />
             <button id="closeBtn" action="windowClose"/>
         </hbox>
     </layout>

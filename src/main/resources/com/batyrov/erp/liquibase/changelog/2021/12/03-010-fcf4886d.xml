@@ -111,7 +111,7 @@
             <column name="DATE_" type="DATETIME">
                 <constraints nullable="false"/>
             </column>
-            <column name="IS_ACTIVE" type="BOOLEAN">
+            <column name="STATUS" type="INT">
                 <constraints nullable="false"/>
             </column>
             <column name="AMOUNT" type="DECIMAL(19, 2)">

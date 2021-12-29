@@ -31,9 +31,11 @@ open class Document {
     @Temporal(TemporalType.TIMESTAMP)
     var date: Date = Calendar.getInstance().time;
 
-    @NotNull(message = "{msg://com.batyrov.erp.entity.docs/Document.isActive.validation.NotNull}")
-    @Column(name = "IS_ACTIVE", nullable = false)
-    var isActive: Boolean? = false
-        private set
+    @Column(name = "STATUS", nullable = false)
+    private var status: Int? = 0
 
+    fun getStatus(): DocumentStatus? = status?.let { DocumentStatus.fromId(it) }
+    fun setStatus(status: DocumentStatus?) {
+        this.status = status?.id
+    }
 }

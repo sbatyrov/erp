@@ -53,13 +53,13 @@
             </actions>
             <columns>
                 <column id="date"/>
-                <column id="isActive"/>
                 <column id="amount"/>
                 <column id="currency"/>
                 <column id="project"/>
                 <column id="parthner"/>
                 <column id="incomeCategory"/>
                 <column id="person"/>
+                <column id="status"/>
             </columns>
             <simplePagination/>
             <buttonsPanel id="buttonsPanel"

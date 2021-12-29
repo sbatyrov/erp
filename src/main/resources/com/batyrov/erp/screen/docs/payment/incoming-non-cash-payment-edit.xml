@@ -44,7 +44,6 @@
         <form id="form" dataContainer="incomingNonCashPaymentDc">
             <column width="350px">
                 <dateField id="dateField" property="date"/>
-                <checkBox id="isActiveField" property="isActive"/>
                 <textField id="amountField" property="amount"/>
                 <entityPicker id="currencyField" property="currency">
                     <actions>
@@ -71,6 +70,7 @@
                     </actions>
                 </entityPicker>
                 <fileStorageUpload id="invoiceField" property="invoice"/>
+                <comboBox id="statusField" property="status"/>
             </column>
         </form>
         <hbox id="editActions" spacing="true">

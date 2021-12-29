@@ -40,7 +40,6 @@
         <form id="form" dataContainer="incomingCashPaymentDc">
             <column width="350px">
                 <dateField id="dateField" property="date"/>
-                <checkBox id="isActiveField" property="isActive"/>
                 <textField id="amountField" property="amount"/>
                 <entityPicker id="currencyField" property="currency">
                     <actions>
@@ -72,6 +71,7 @@
                         <action id="entityClear" type="entity_clear"/>
                     </actions>
                 </entityPicker>
+                <comboBox id="statusField" property="status"/>
             </column>
         </form>
         <hbox id="editActions" spacing="true">
