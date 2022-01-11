@@ -1,4 +1,4 @@
-package com.batyrov.erp.screen.docs.requestforpurchase
+package com.batyrov.erp.screen.docs.request
 
 import io.jmix.ui.screen.*
 import com.batyrov.erp.entity.docs.RequestForPurchase

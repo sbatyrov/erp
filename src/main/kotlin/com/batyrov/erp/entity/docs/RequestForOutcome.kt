@@ -62,7 +62,10 @@ open class RequestForOutcome {
     var deletedDate: Date? = null
 
     @OneToMany(mappedBy = "request")
-    var wares: MutableList<RequestForPurchaseDetail> = mutableListOf()
+    var wares: MutableList<RFOWares> = mutableListOf()
+
+    @OneToMany(mappedBy = "request")
+    var services: MutableList<RFOServices> = mutableListOf()
 
     @NotNull
     @Column(name = "AMOUNT", nullable = false, precision = 19, scale = 2)
