@@ -118,15 +118,15 @@
                 <constraints nullable="false"/>
             </column>
             <column name="CURRENCY_ID" type="UUID"/>
-            <column name="USER_ID" type="UUID"/>
-            <column name="WALLET_ID" type="UUID"/>
             <column name="PROJECT_ID" type="UUID"/>
             <column name="PARTHNER_ID" type="UUID"/>
+            <column name="WALLET_ID" type="UUID"/>
+            <column name="USER_ID" type="UUID"/>
+            <column name="INCOME_CATEGORY_ID" type="UUID"/>
             <column name="COST_CATEGORY_ID" type="UUID"/>
             <column name="COST_CENTRE_ID" type="UUID"/>
-            <column name="INCOME_CATEGORY_ID" type="UUID"/>
-            <column name="INVOICE" type="VARCHAR(1024)"/>
             <column name="PERSON_ID" type="UUID"/>
+            <column name="INVOICE" type="VARCHAR(1024)"/>
         </createTable>
     </changeSet>
     <changeSet id="12" author="erp">
@@ -265,70 +265,51 @@
         </createTable>
     </changeSet>
     <changeSet id="24" author="erp">
-        <createTable tableName="ERP_REQUEST_FOR_CASH">
+        <createTable tableName="ERP_REQUEST_FOR_OUTCOME">
             <column name="ID" type="UUID">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ERP_REQUEST_FOR_CASH"/>
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ERP_REQUEST_FOR_OUTCOME"/>
             </column>
-            <column name="PERSON_ID" type="UUID"/>
-            <column name="PARTNER_ID" type="UUID"/>
-            <column name="AMOUNT" type="DECIMAL(19, 2)"/>
+            <column name="DTYPE" type="VARCHAR(31)"/>
+            <column name="VERSION" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="VARCHAR(255)"/>
+            <column name="CREATED_DATE" type="DATETIME"/>
+            <column name="LAST_MODIFIED_BY" type="VARCHAR(255)"/>
+            <column name="LAST_MODIFIED_DATE" type="DATETIME"/>
+            <column name="DELETED_BY" type="VARCHAR(255)"/>
+            <column name="DELETED_DATE" type="DATETIME"/>
+            <column name="AMOUNT" type="DECIMAL(19, 2)">
+                <constraints nullable="false"/>
+            </column>
             <column name="CONTRACT_ORDER_ID" type="UUID"/>
             <column name="CONTRACT_ID" type="UUID"/>
             <column name="PROJECT_ID" type="UUID"/>
-            <column name="COST_CENTRE_ID" type="UUID"/>
-            <column name="COST_CATEGORY_ID" type="UUID"/>
+            <column name="COST_CENTRE_ID" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="COST_CATEGORY_ID" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="CLOB"/>
+            <column name="PERSON_ID" type="UUID"/>
         </createTable>
     </changeSet>
     <changeSet id="25" author="erp">
-        <createTable tableName="ERP_REQUEST_FOR_PURCHASE">
-            <column name="ID" type="UUID">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ERP_REQUEST_FOR_PURCHASE"/>
-            </column>
-            <column name="AMOUNT" type="DECIMAL(19, 2)"/>
-            <column name="CONTRACT_ORDER_ID" type="UUID"/>
-            <column name="CONTRACT_ID" type="UUID"/>
-            <column name="PROJECT_ID" type="UUID"/>
-            <column name="COST_CENTRE_ID" type="UUID"/>
-            <column name="COST_CATEGORY_ID" type="UUID"/>
-            <column name="DESCRIPTION" type="CLOB"/>
-        </createTable>
-    </changeSet>
-    <changeSet id="26" author="erp">
         <createTable tableName="ERP_REQUEST_FOR_PURCHASE_DETAI">
             <column name="ID" type="UUID">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ERPREQUESTFORPURCHASEDETAI"/>
             </column>
-            <column name="REQUEST_ID" type="UUID">
-                <constraints nullable="false"/>
-            </column>
             <column name="WARE_ID" type="UUID">
                 <constraints nullable="false"/>
             </column>
+            <column name="REQUEST_ID" type="UUID"/>
             <column name="COUNT_" type="INT">
                 <constraints nullable="false"/>
             </column>
         </createTable>
     </changeSet>
-    <changeSet id="27" author="erp">
-        <createTable tableName="ERP_USER">
-            <column name="ID" type="UUID">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ERP_USER"/>
-            </column>
-            <column name="VERSION" type="INT">
-                <constraints nullable="false"/>
-            </column>
-            <column name="USERNAME" type="VARCHAR(255)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="PASSWORD" type="VARCHAR(255)"/>
-            <column name="FIRST_NAME" type="VARCHAR(255)"/>
-            <column name="LAST_NAME" type="VARCHAR(255)"/>
-            <column name="EMAIL" type="VARCHAR(255)"/>
-            <column name="ACTIVE" type="BOOLEAN"/>
-            <column name="TIME_ZONE_ID" type="VARCHAR(255)"/>
-        </createTable>
-    </changeSet>
-    <changeSet id="28" author="erp">
+    <changeSet id="26" author="erp">
         <createTable tableName="ERP_WALLET">
             <column name="ID" type="UUID">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ERP_WALLET"/>
@@ -338,7 +319,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet id="29" author="erp">
+    <changeSet id="27" author="erp">
         <createTable tableName="ERP_WALLET_CATEGORY">
             <column name="ID" type="UUID">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ERP_WALLET_CATEGORY"/>
@@ -346,7 +327,7 @@
             <column name="NAME" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
-    <changeSet id="30" author="erp">
+    <changeSet id="28" author="erp">
         <createTable tableName="ERP_WARE">
             <column name="ID" type="UUID">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ERP_WARE"/>
@@ -354,7 +335,7 @@
             <column name="NAME" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
-    <changeSet id="31" author="erp">
+    <changeSet id="29" author="erp">
         <createTable tableName="ERP_WAREHOUSE">
             <column name="ID" type="UUID">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ERP_WAREHOUSE"/>
@@ -364,7 +345,7 @@
             <column name="NAME" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
-    <changeSet id="32" author="erp">
+    <changeSet id="30" author="erp">
         <createTable tableName="ERP_WAREHOUSE_LEDGER">
             <column name="ID" type="UUID">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ERP_WAREHOUSE_LEDGER"/>
@@ -376,7 +357,7 @@
             <column name="WARE_SERIAL_ID" type="UUID"/>
         </createTable>
     </changeSet>
-    <changeSet id="33" author="erp">
+    <changeSet id="31" author="erp">
         <createTable tableName="ERP_WARE_SERIAL">
             <column name="ID" type="UUID">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ERP_WARE_SERIAL"/>
@@ -385,19 +366,14 @@
             <column name="WARE_ID" type="UUID"/>
         </createTable>
     </changeSet>
-    <changeSet id="34" author="erp">
+    <changeSet id="32" author="erp">
         <createIndex indexName="IDX_ERP_REQUEST_FOR_PURCHASE_DETAIL_UNQ" tableName="ERP_REQUEST_FOR_PURCHASE_DETAI"
                      unique="true">
             <column name="REQUEST_ID"/>
             <column name="WARE_ID"/>
         </createIndex>
     </changeSet>
-    <changeSet id="35" author="erp">
-        <createIndex indexName="IDX_ERP_USER_ON_USERNAME" tableName="ERP_USER" unique="true">
-            <column name="USERNAME"/>
-        </createIndex>
-    </changeSet>
-    <changeSet id="36" author="erp">
+    <changeSet id="33" author="erp">
         <addForeignKeyConstraint baseColumnNames="ACCOUNT_INSTANCE_ID" baseTableName="ERP_ACCOUNT_LEDGER"
                                  constraintName="FK_ERPACCOUNTL_ON_ACCOUNTINST" referencedColumnNames="ID"
                                  referencedTableName="ERP_ACCOUNT_INSTANCE"/>
@@ -406,7 +382,7 @@
             <column name="ACCOUNT_INSTANCE_ID"/>
         </createIndex>
     </changeSet>
-    <changeSet id="37" author="erp">
+    <changeSet id="34" author="erp">
         <addForeignKeyConstraint baseColumnNames="CONTRACT_ID" baseTableName="ERP_CONTRACT_ORDER"
                                  constraintName="FK_ERPCONTRACTORDE_ON_CONTRACT" referencedColumnNames="ID"
                                  referencedTableName="ERP_CONTRACT"/>
@@ -415,12 +391,12 @@
             <column name="CONTRACT_ID"/>
         </createIndex>
     </changeSet>
-    <changeSet id="38" author="erp">
+    <changeSet id="35" author="erp">
         <addForeignKeyConstraint baseColumnNames="COST_CATEGORY_ID" baseTableName="ERP_DOCUMENT"
                                  constraintName="FK_ERPDOCUMENT_ON_COSTCATEGORY" referencedColumnNames="ID"
                                  referencedTableName="ERP_COST_CATEGORY"/>
     </changeSet>
-    <changeSet id="39" author="erp">
+    <changeSet id="36" author="erp">
         <addForeignKeyConstraint baseColumnNames="INCOME_CATEGORY_ID" baseTableName="ERP_DOCUMENT"
                                  constraintName="FK_ERPDOCUMENT_ON_INCOMECATEGO" referencedColumnNames="ID"
                                  referencedTableName="ERP_INCOME_CATEGORY"/>
@@ -429,37 +405,37 @@
             <column name="INCOME_CATEGORY_ID"/>
         </createIndex>
     </changeSet>
-    <changeSet id="40" author="erp">
+    <changeSet id="37" author="erp">
         <addForeignKeyConstraint baseColumnNames="COST_CENTRE_ID" baseTableName="ERP_EXPENSES_LEDGER"
                                  constraintName="FK_ERPEXPENSESLE_ON_COSTCENTRE" referencedColumnNames="ID"
                                  referencedTableName="ERP_COST_CENTRE"/>
     </changeSet>
-    <changeSet id="41" author="erp">
+    <changeSet id="38" author="erp">
         <addForeignKeyConstraint baseColumnNames="COST_CATEGORY_ID" baseTableName="ERP_EXPENSES_LEDGER"
                                  constraintName="FK_ERPEXPENSES_ON_COSTCATEGOR" referencedColumnNames="ID"
                                  referencedTableName="ERP_COST_CATEGORY"/>
     </changeSet>
-    <changeSet id="42" author="erp">
+    <changeSet id="39" author="erp">
         <addForeignKeyConstraint baseColumnNames="PROJECT_ID" baseTableName="ERP_FINANCIAL_LEDGER"
                                  constraintName="FK_ERPFINANCIALLEDG_ON_PROJECT" referencedColumnNames="ID"
                                  referencedTableName="ERP_PROJECT"/>
     </changeSet>
-    <changeSet id="43" author="erp">
+    <changeSet id="40" author="erp">
         <addForeignKeyConstraint baseColumnNames="CURRENCY_ID" baseTableName="ERP_FINANCIAL_LEDGER"
                                  constraintName="FK_ERPFINANCIALLED_ON_CURRENCY" referencedColumnNames="ID"
                                  referencedTableName="ERP_CURRENCY"/>
     </changeSet>
-    <changeSet id="44" author="erp">
+    <changeSet id="41" author="erp">
         <addForeignKeyConstraint baseColumnNames="PARTHNER_ID" baseTableName="ERP_FINANCIAL_LEDGER"
                                  constraintName="FK_ERPFINANCIALLED_ON_PARTHNER" referencedColumnNames="ID"
                                  referencedTableName="ERP_PARTHNER"/>
     </changeSet>
-    <changeSet id="45" author="erp">
+    <changeSet id="42" author="erp">
         <addForeignKeyConstraint baseColumnNames="INCOME_CATEGORY_ID" baseTableName="ERP_INCOME_LEDGER"
                                  constraintName="FK_ERPINCOMELE_ON_INCOMECATEG" referencedColumnNames="ID"
                                  referencedTableName="ERP_INCOME_CATEGORY"/>
     </changeSet>
-    <changeSet id="46" author="erp">
+    <changeSet id="43" author="erp">
         <addForeignKeyConstraint baseColumnNames="PARTHNER_ID" baseTableName="ERP_PARTHNER_LEDGER"
                                  constraintName="FK_ERPPARTHNERLEDG_ON_PARTHNER" referencedColumnNames="ID"
                                  referencedTableName="ERP_PARTHNER"/>
@@ -468,27 +444,27 @@
             <column name="PARTHNER_ID"/>
         </createIndex>
     </changeSet>
-    <changeSet id="47" author="erp">
+    <changeSet id="44" author="erp">
         <addForeignKeyConstraint baseColumnNames="PARTHNER_ID" baseTableName="ERP_PERSON_PARTHNER_LINK"
                                  constraintName="FK_ERPPERPAR_ON_PARTHNER" referencedColumnNames="ID"
                                  referencedTableName="ERP_PARTHNER"/>
     </changeSet>
-    <changeSet id="48" author="erp">
+    <changeSet id="45" author="erp">
         <addForeignKeyConstraint baseColumnNames="PERSON_ID" baseTableName="ERP_PERSON_PARTHNER_LINK"
                                  constraintName="FK_ERPPERPAR_ON_PERSON" referencedColumnNames="ID"
                                  referencedTableName="ERP_PERSON"/>
     </changeSet>
-    <changeSet id="49" author="erp">
+    <changeSet id="46" author="erp">
         <addForeignKeyConstraint baseColumnNames="CONTRACT_ID" baseTableName="ERP_PROJECT_CONTRACT_LINK"
                                  constraintName="FK_ERPPROCON_ON_CONTRACT" referencedColumnNames="ID"
                                  referencedTableName="ERP_CONTRACT"/>
     </changeSet>
-    <changeSet id="50" author="erp">
+    <changeSet id="47" author="erp">
         <addForeignKeyConstraint baseColumnNames="PROJECT_ID" baseTableName="ERP_PROJECT_CONTRACT_LINK"
                                  constraintName="FK_ERPPROCON_ON_PROJECT" referencedColumnNames="ID"
                                  referencedTableName="ERP_PROJECT"/>
     </changeSet>
-    <changeSet id="51" author="erp">
+    <changeSet id="48" author="erp">
         <addForeignKeyConstraint baseColumnNames="BUSINESS_UNIT_ID" baseTableName="ERP_PROJECT"
                                  constraintName="FK_ERPPROJECT_ON_BUSINESSUNIT" referencedColumnNames="ID"
                                  referencedTableName="ERP_BUSINESS_UNIT"/>
@@ -497,35 +473,22 @@
             <column name="BUSINESS_UNIT_ID"/>
         </createIndex>
     </changeSet>
-    <changeSet id="52" author="erp">
-        <addForeignKeyConstraint baseColumnNames="PERSON_ID" baseTableName="ERP_REQUEST_FOR_CASH"
-                                 constraintName="FK_ERPREQUESTFORCASH_ON_PERSON" referencedColumnNames="ID"
+    <changeSet id="49" author="erp">
+        <addForeignKeyConstraint baseColumnNames="PERSON_ID" baseTableName="ERP_REQUEST_FOR_OUTCOME"
+                                 constraintName="FK_ERPREQUESTFOROUTC_ON_PERSON" referencedColumnNames="ID"
                                  referencedTableName="ERP_PERSON"/>
-
-        <createIndex indexName="IDX_REQUESTFORCASH_PERSON_ID" tableName="ERP_REQUEST_FOR_CASH">
-            <column name="PERSON_ID"/>
-        </createIndex>
     </changeSet>
-    <changeSet id="53" author="erp">
-        <addForeignKeyConstraint baseColumnNames="PARTNER_ID" baseTableName="ERP_REQUEST_FOR_CASH"
-                                 constraintName="FK_ERPREQUESTFORCAS_ON_PARTNER" referencedColumnNames="ID"
-                                 referencedTableName="ERP_PARTHNER"/>
-
-        <createIndex indexName="IDX_REQUESTFORCASH_PARTNER_ID" tableName="ERP_REQUEST_FOR_CASH">
-            <column name="PARTNER_ID"/>
-        </createIndex>
-    </changeSet>
-    <changeSet id="54" author="erp">
-        <addForeignKeyConstraint baseColumnNames="PROJECT_ID" baseTableName="ERP_REQUEST_FOR_CASH"
-                                 constraintName="FK_ERPREQUESTFORCAS_ON_PROJECT" referencedColumnNames="ID"
+    <changeSet id="50" author="erp">
+        <addForeignKeyConstraint baseColumnNames="PROJECT_ID" baseTableName="ERP_REQUEST_FOR_OUTCOME"
+                                 constraintName="FK_ERPREQUESTFOROUT_ON_PROJECT" referencedColumnNames="ID"
                                  referencedTableName="ERP_PROJECT"/>
     </changeSet>
-    <changeSet id="55" author="erp">
-        <addForeignKeyConstraint baseColumnNames="CONTRACT_ID" baseTableName="ERP_REQUEST_FOR_CASH"
-                                 constraintName="FK_ERPREQUESTFORCA_ON_CONTRACT" referencedColumnNames="ID"
+    <changeSet id="51" author="erp">
+        <addForeignKeyConstraint baseColumnNames="CONTRACT_ID" baseTableName="ERP_REQUEST_FOR_OUTCOME"
+                                 constraintName="FK_ERPREQUESTFOROU_ON_CONTRACT" referencedColumnNames="ID"
                                  referencedTableName="ERP_CONTRACT"/>
     </changeSet>
-    <changeSet id="56" author="erp">
+    <changeSet id="52" author="erp">
         <addForeignKeyConstraint baseColumnNames="WARE_ID" baseTableName="ERP_REQUEST_FOR_PURCHASE_DETAI"
                                  constraintName="FK_ERPREQUESTFORPURCHA_ON_WARE" referencedColumnNames="ID"
                                  referencedTableName="ERP_WARE"/>
@@ -534,60 +497,31 @@
             <column name="WARE_ID"/>
         </createIndex>
     </changeSet>
-    <changeSet id="57" author="erp">
-        <addForeignKeyConstraint baseColumnNames="PROJECT_ID" baseTableName="ERP_REQUEST_FOR_PURCHASE"
-                                 constraintName="FK_ERPREQUESTFORPUR_ON_PROJECT" referencedColumnNames="ID"
-                                 referencedTableName="ERP_PROJECT"/>
-    </changeSet>
-    <changeSet id="58" author="erp">
+    <changeSet id="53" author="erp">
         <addForeignKeyConstraint baseColumnNames="REQUEST_ID" baseTableName="ERP_REQUEST_FOR_PURCHASE_DETAI"
                                  constraintName="FK_ERPREQUESTFORPUR_ON_REQUEST" referencedColumnNames="ID"
-                                 referencedTableName="ERP_REQUEST_FOR_PURCHASE"/>
+                                 referencedTableName="ERP_REQUEST_FOR_OUTCOME"/>
     </changeSet>
-    <changeSet id="59" author="erp">
-        <addForeignKeyConstraint baseColumnNames="CONTRACT_ID" baseTableName="ERP_REQUEST_FOR_PURCHASE"
-                                 constraintName="FK_ERPREQUESTFORPU_ON_CONTRACT" referencedColumnNames="ID"
-                                 referencedTableName="ERP_CONTRACT"/>
-    </changeSet>
-    <changeSet id="60" author="erp">
-        <addForeignKeyConstraint baseColumnNames="COST_CENTRE_ID" baseTableName="ERP_REQUEST_FOR_PURCHASE"
+    <changeSet id="54" author="erp">
+        <addForeignKeyConstraint baseColumnNames="COST_CENTRE_ID" baseTableName="ERP_REQUEST_FOR_OUTCOME"
                                  constraintName="FK_ERPREQUESTFOR_ON_COSTCENTRE" referencedColumnNames="ID"
                                  referencedTableName="ERP_COST_CENTRE"/>
     </changeSet>
-    <changeSet id="61" author="erp">
-        <addForeignKeyConstraint baseColumnNames="COST_CENTRE_ID" baseTableName="ERP_REQUEST_FOR_CASH"
-                                 constraintName="FK_ERPREQUESTFOR_ON_COSTCENTREvrb5jK" referencedColumnNames="ID"
-                                 referencedTableName="ERP_COST_CENTRE"/>
-    </changeSet>
-    <changeSet id="62" author="erp">
-        <addForeignKeyConstraint baseColumnNames="CONTRACT_ORDER_ID" baseTableName="ERP_REQUEST_FOR_PURCHASE"
+    <changeSet id="55" author="erp">
+        <addForeignKeyConstraint baseColumnNames="CONTRACT_ORDER_ID" baseTableName="ERP_REQUEST_FOR_OUTCOME"
                                  constraintName="FK_ERPREQUESTF_ON_CONTRACTORD" referencedColumnNames="ID"
                                  referencedTableName="ERP_CONTRACT_ORDER"/>
 
-        <createIndex indexName="IDX_REQUESTFORPURCHASE" tableName="ERP_REQUEST_FOR_PURCHASE">
+        <createIndex indexName="IDX_REQUESTFOROUTCOME" tableName="ERP_REQUEST_FOR_OUTCOME">
             <column name="CONTRACT_ORDER_ID"/>
         </createIndex>
     </changeSet>
-    <changeSet id="63" author="erp">
-        <addForeignKeyConstraint baseColumnNames="CONTRACT_ORDER_ID" baseTableName="ERP_REQUEST_FOR_CASH"
-                                 constraintName="FK_ERPREQUESTF_ON_CONTRACTORDYJPqyN" referencedColumnNames="ID"
-                                 referencedTableName="ERP_CONTRACT_ORDER"/>
-
-        <createIndex indexName="IDX_REQUESTFORCASH" tableName="ERP_REQUEST_FOR_CASH">
-            <column name="CONTRACT_ORDER_ID"/>
-        </createIndex>
-    </changeSet>
-    <changeSet id="64" author="erp">
-        <addForeignKeyConstraint baseColumnNames="COST_CATEGORY_ID" baseTableName="ERP_REQUEST_FOR_PURCHASE"
+    <changeSet id="56" author="erp">
+        <addForeignKeyConstraint baseColumnNames="COST_CATEGORY_ID" baseTableName="ERP_REQUEST_FOR_OUTCOME"
                                  constraintName="FK_ERPREQUESTF_ON_COSTCATEGOR" referencedColumnNames="ID"
                                  referencedTableName="ERP_COST_CATEGORY"/>
     </changeSet>
-    <changeSet id="65" author="erp">
-        <addForeignKeyConstraint baseColumnNames="COST_CATEGORY_ID" baseTableName="ERP_REQUEST_FOR_CASH"
-                                 constraintName="FK_ERPREQUESTF_ON_COSTCATEGORSIH3NA" referencedColumnNames="ID"
-                                 referencedTableName="ERP_COST_CATEGORY"/>
-    </changeSet>
-    <changeSet id="66" author="erp">
+    <changeSet id="57" author="erp">
         <addForeignKeyConstraint baseColumnNames="WARE_ID" baseTableName="ERP_WAREHOUSE_LEDGER"
                                  constraintName="FK_ERPWAREHOUSELEDGER_ON_WARE" referencedColumnNames="ID"
                                  referencedTableName="ERP_WARE"/>
@@ -596,7 +530,7 @@
             <column name="WARE_ID"/>
         </createIndex>
     </changeSet>
-    <changeSet id="67" author="erp">
+    <changeSet id="58" author="erp">
         <addForeignKeyConstraint baseColumnNames="WARE_SERIAL_ID" baseTableName="ERP_WAREHOUSE_LEDGER"
                                  constraintName="FK_ERPWAREHOUSEL_ON_WARESERIAL" referencedColumnNames="ID"
                                  referencedTableName="ERP_WARE_SERIAL"/>
@@ -605,7 +539,7 @@
             <column name="WARE_SERIAL_ID"/>
         </createIndex>
     </changeSet>
-    <changeSet id="68" author="erp">
+    <changeSet id="59" author="erp">
         <addForeignKeyConstraint baseColumnNames="RESPONSIBLE_ID" baseTableName="ERP_WAREHOUSE"
                                  constraintName="FK_ERPWAREHOUSE_ON_RESPONSIBLE" referencedColumnNames="ID"
                                  referencedTableName="ERP_USER"/>
@@ -614,7 +548,7 @@
             <column name="RESPONSIBLE_ID"/>
         </createIndex>
     </changeSet>
-    <changeSet id="69" author="erp">
+    <changeSet id="60" author="erp">
         <addForeignKeyConstraint baseColumnNames="COMPANY_ID" baseTableName="ERP_CONTRACT"
                                  constraintName="FK_ERP_CONTRACT_ON_COMPANY" referencedColumnNames="ID"
                                  referencedTableName="ERP_COMPANY"/>
@@ -623,7 +557,7 @@
             <column name="COMPANY_ID"/>
         </createIndex>
     </changeSet>
-    <changeSet id="70" author="erp">
+    <changeSet id="61" author="erp">
         <addForeignKeyConstraint baseColumnNames="CURRENCY_ID" baseTableName="ERP_CONTRACT"
                                  constraintName="FK_ERP_CONTRACT_ON_CURRENCY" referencedColumnNames="ID"
                                  referencedTableName="ERP_CURRENCY"/>
@@ -632,7 +566,7 @@
             <column name="CURRENCY_ID"/>
         </createIndex>
     </changeSet>
-    <changeSet id="71" author="erp">
+    <changeSet id="62" author="erp">
         <addForeignKeyConstraint baseColumnNames="PARTHNER_ID" baseTableName="ERP_CONTRACT"
                                  constraintName="FK_ERP_CONTRACT_ON_PARTHNER" referencedColumnNames="ID"
                                  referencedTableName="ERP_PARTHNER"/>
@@ -641,7 +575,7 @@
             <column name="PARTHNER_ID"/>
         </createIndex>
     </changeSet>
-    <changeSet id="72" author="erp">
+    <changeSet id="63" author="erp">
         <addForeignKeyConstraint baseColumnNames="OWNER_ID" baseTableName="ERP_COST_CENTRE"
                                  constraintName="FK_ERP_COST_CENTRE_ON_OWNER" referencedColumnNames="ID"
                                  referencedTableName="ERP_USER"/>
@@ -650,7 +584,7 @@
             <column name="OWNER_ID"/>
         </createIndex>
     </changeSet>
-    <changeSet id="73" author="erp">
+    <changeSet id="64" author="erp">
         <addForeignKeyConstraint baseColumnNames="COST_CENTRE_ID" baseTableName="ERP_DOCUMENT"
                                  constraintName="FK_ERP_DOCUMENT_ON_COST_CENTRE" referencedColumnNames="ID"
                                  referencedTableName="ERP_COST_CENTRE"/>
@@ -659,7 +593,7 @@
             <column name="COST_CENTRE_ID"/>
         </createIndex>
     </changeSet>
-    <changeSet id="74" author="erp">
+    <changeSet id="65" author="erp">
         <addForeignKeyConstraint baseColumnNames="CURRENCY_ID" baseTableName="ERP_DOCUMENT"
                                  constraintName="FK_ERP_DOCUMENT_ON_CURRENCY" referencedColumnNames="ID"
                                  referencedTableName="ERP_CURRENCY"/>
@@ -668,7 +602,7 @@
             <column name="CURRENCY_ID"/>
         </createIndex>
     </changeSet>
-    <changeSet id="75" author="erp">
+    <changeSet id="66" author="erp">
         <addForeignKeyConstraint baseColumnNames="PARTHNER_ID" baseTableName="ERP_DOCUMENT"
                                  constraintName="FK_ERP_DOCUMENT_ON_PARTHNER" referencedColumnNames="ID"
                                  referencedTableName="ERP_PARTHNER"/>
@@ -677,7 +611,7 @@
             <column name="PARTHNER_ID"/>
         </createIndex>
     </changeSet>
-    <changeSet id="76" author="erp">
+    <changeSet id="67" author="erp">
         <addForeignKeyConstraint baseColumnNames="PERSON_ID" baseTableName="ERP_DOCUMENT"
                                  constraintName="FK_ERP_DOCUMENT_ON_PERSON" referencedColumnNames="ID"
                                  referencedTableName="ERP_PERSON"/>
@@ -686,7 +620,7 @@
             <column name="PERSON_ID"/>
         </createIndex>
     </changeSet>
-    <changeSet id="77" author="erp">
+    <changeSet id="68" author="erp">
         <addForeignKeyConstraint baseColumnNames="PROJECT_ID" baseTableName="ERP_DOCUMENT"
                                  constraintName="FK_ERP_DOCUMENT_ON_PROJECT" referencedColumnNames="ID"
                                  referencedTableName="ERP_PROJECT"/>
@@ -695,7 +629,7 @@
             <column name="PROJECT_ID"/>
         </createIndex>
     </changeSet>
-    <changeSet id="78" author="erp">
+    <changeSet id="69" author="erp">
         <addForeignKeyConstraint baseColumnNames="USER_ID" baseTableName="ERP_DOCUMENT"
                                  constraintName="FK_ERP_DOCUMENT_ON_USER" referencedColumnNames="ID"
                                  referencedTableName="ERP_USER"/>
@@ -704,27 +638,27 @@
             <column name="USER_ID"/>
         </createIndex>
     </changeSet>
-    <changeSet id="79" author="erp">
+    <changeSet id="70" author="erp">
         <addForeignKeyConstraint baseColumnNames="WALLET_ID" baseTableName="ERP_DOCUMENT"
                                  constraintName="FK_ERP_DOCUMENT_ON_WALLET" referencedColumnNames="ID"
                                  referencedTableName="ERP_WALLET"/>
     </changeSet>
-    <changeSet id="80" author="erp">
+    <changeSet id="71" author="erp">
         <addForeignKeyConstraint baseColumnNames="ID" baseTableName="ERP_EXPENSES_LEDGER"
                                  constraintName="FK_ERP_EXPENSES_LEDGER_ON_ID" referencedColumnNames="ID"
                                  referencedTableName="ERP_LEDGER"/>
     </changeSet>
-    <changeSet id="81" author="erp">
+    <changeSet id="72" author="erp">
         <addForeignKeyConstraint baseColumnNames="ID" baseTableName="ERP_FINANCIAL_LEDGER"
                                  constraintName="FK_ERP_FINANCIAL_LEDGER_ON_ID" referencedColumnNames="ID"
                                  referencedTableName="ERP_LEDGER"/>
     </changeSet>
-    <changeSet id="82" author="erp">
+    <changeSet id="73" author="erp">
         <addForeignKeyConstraint baseColumnNames="ID" baseTableName="ERP_INCOME_LEDGER"
                                  constraintName="FK_ERP_INCOME_LEDGER_ON_ID" referencedColumnNames="ID"
                                  referencedTableName="ERP_LEDGER"/>
     </changeSet>
-    <changeSet id="83" author="erp">
+    <changeSet id="74" author="erp">
         <addForeignKeyConstraint baseColumnNames="DOCUMENT_ID" baseTableName="ERP_LEDGER"
                                  constraintName="FK_ERP_LEDGER_ON_DOCUMENT" onDelete="CASCADE"
                                  referencedColumnNames="ID" referencedTableName="ERP_DOCUMENT"/>
@@ -733,7 +667,7 @@
             <column name="DOCUMENT_ID"/>
         </createIndex>
     </changeSet>
-    <changeSet id="84" author="erp">
+    <changeSet id="75" author="erp">
         <addForeignKeyConstraint baseColumnNames="USER_ID" baseTableName="ERP_PERSON"
                                  constraintName="FK_ERP_PERSON_ON_USER" referencedColumnNames="ID"
                                  referencedTableName="ERP_USER"/>
@@ -742,7 +676,7 @@
             <column name="USER_ID"/>
         </createIndex>
     </changeSet>
-    <changeSet id="85" author="erp">
+    <changeSet id="76" author="erp">
         <addForeignKeyConstraint baseColumnNames="PROJECT_TYPE_ID" baseTableName="ERP_PROJECT"
                                  constraintName="FK_ERP_PROJECT_ON_PROJECT_TYPE" referencedColumnNames="ID"
                                  referencedTableName="ERP_PROJECT_TYPE"/>
@@ -751,7 +685,7 @@
             <column name="PROJECT_TYPE_ID"/>
         </createIndex>
     </changeSet>
-    <changeSet id="86" author="erp">
+    <changeSet id="77" author="erp">
         <addForeignKeyConstraint baseColumnNames="OWNER_ID" baseTableName="ERP_WAREHOUSE"
                                  constraintName="FK_ERP_WAREHOUSE_ON_OWNER" referencedColumnNames="ID"
                                  referencedTableName="ERP_USER"/>
@@ -760,7 +694,7 @@
             <column name="OWNER_ID"/>
         </createIndex>
     </changeSet>
-    <changeSet id="87" author="erp">
+    <changeSet id="78" author="erp">
         <addForeignKeyConstraint baseColumnNames="WARE_ID" baseTableName="ERP_WARE_SERIAL"
                                  constraintName="FK_ERP_WARE_SERIAL_ON_WARE" referencedColumnNames="ID"
                                  referencedTableName="ERP_WARE"/>
@@ -768,28 +702,5 @@
         <createIndex indexName="IDX_WARESERIAL_WARE_ID" tableName="ERP_WARE_SERIAL">
             <column name="WARE_ID"/>
         </createIndex>
-    </changeSet>
-    <changeSet id="88" author="erp">
-        <dropTable cascadeConstraints="true" tableName="user_"/>
-    </changeSet>
-
-    <changeSet id="89" author="erp">
-
-        <insert tableName="ERP_USER" dbms="postgresql, mssql, hsqldb">
-            <column name="ID" value="60885987-1b61-4247-94c7-dff348347f93"/>
-            <column name="VERSION" value="1"/>
-            <column name="USERNAME" value="admin"/>
-            <column name="PASSWORD" value="{noop}admin"/>
-            <column name="ACTIVE" valueBoolean="true"/>
-        </insert>
-
-        <insert tableName="ERP_USER" dbms="oracle, mysql, mariadb">
-            <column name="ID" value="608859871b61424794c7dff348347f93"/>
-            <column name="VERSION" value="1"/>
-            <column name="USERNAME" value="admin"/>
-            <column name="PASSWORD" value="{noop}admin"/>
-            <column name="ACTIVE" valueBoolean="true"/>
-        </insert>
-
     </changeSet>
 </databaseChangeLog>
