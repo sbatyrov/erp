@@ -18,6 +18,7 @@ import javax.validation.constraints.NotNull
 ])
 @Entity(name = "erp_RequestForPurchaseDetail")
 open class RequestForPurchaseDetail {
+    
     @JmixGeneratedValue
     @Column(name = "ID", nullable = false)
     @Id
