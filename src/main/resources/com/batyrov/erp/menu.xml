@@ -13,7 +13,10 @@
         <item screen="erp_IncomingNonCashPayment.browse"
               caption="msg://com.batyrov.erp.screen.docs.payment/incomingNonCashPaymentBrowse.menu"/>
         <item screen="erp_RequestForPurchase.browse"
-              caption="msg://com.batyrov.erp.screen.docs.requestforpurchase/requestForPurchaseBrowse.menu"/>
+              caption="msg://com.batyrov.erp.screen.docs.request/requestForPurchaseBrowse.menu"/>
+        <item screen="erp_RFOServices.browse"
+              caption="msg://com.batyrov.erp.screen.docs.request/RFOServicesBrowse.menu"/>
+        <item screen="erp_RFOWares.browse" caption="msg://com.batyrov.erp.screen.docs.request/RFOWaresBrowse.menu"/>
     </menu>
 
     <menu id="application-references" caption="msg://com.batyrov.erp/menu.application-references" insertBefore="administration">

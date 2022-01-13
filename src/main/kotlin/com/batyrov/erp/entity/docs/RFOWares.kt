@@ -66,4 +66,9 @@ open class RFOWares {
     @ManyToOne(fetch = FetchType.LAZY)
     var request: RequestForOutcome? = null
 
+    @NotNull(message = "count cannot be null")
+    @Column(name = "COUNT_", nullable = false)
+    var count: Int? = null
+
+
 }

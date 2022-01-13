@@ -67,4 +67,9 @@ open class RFOServices {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     var service: Service? = null
 
+    @NotNull(message = "count cannot be null")
+    @Column(name = "COUNT_", nullable = false)
+    var count: Int? = null
+
+
 }
