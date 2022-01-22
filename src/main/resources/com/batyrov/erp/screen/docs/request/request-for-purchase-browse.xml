@@ -61,7 +61,7 @@
                 <action id="remove" type="remove"/>
             </actions>
             <columns>
-                <column id="amount"/>
+                <column id="amount" />
                 <column id="contractOrder"/>
                 <column id="contract"/>
                 <column id="project"/>
