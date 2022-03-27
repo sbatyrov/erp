@@ -1,5 +1,6 @@
-package com.batyrov.qna.entity
+package com.batyrov.erp.entity.qna
 
+import com.batyrov.erp.entity.reference.User
 import io.jmix.core.annotation.DeletedBy
 import io.jmix.core.annotation.DeletedDate
 import io.jmix.core.entity.annotation.JmixGeneratedValue
@@ -12,9 +13,9 @@ import java.util.*
 import javax.persistence.*
 
 @JmixEntity
-@Table(name = "ERP_REFERENCE")
-@Entity(name = "erp_Reference")
-open class Reference {
+@Table(name = "ERP_QUESTIONNAIRE")
+@Entity(name = "erp_Questionnaire")
+open class Questionnaire {
     @JmixGeneratedValue
     @Column(name = "ID", nullable = false)
     @Id
@@ -52,5 +53,20 @@ open class Reference {
     var deletedDate: Date? = null
 
     @Column
-    val name: String? = null
+     var createDate: Date? = null
+
+    @ManyToOne
+     var user: User? = null
+
+    @Column
+     var longitude: Double? = null
+
+    @Column
+     var latitude: Double? = null
+
+    @ManyToOne
+     var geoPoint: GeoPoint? = null
+
+    @ManyToOne
+     var task: Task? = null
 }

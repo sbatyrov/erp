@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <menu-config xmlns="http://jmix.io/schema/ui/menu">
 
-    <menu id="application-docs" caption="msg://com.batyrov.erp/menu.application-docs" insertBefore="administration">
+    <menu id="application-qna" caption="msg://com.batyrov.erp/menu.application-qna">
+        <item screen="erp_QuestionnaireConfig.browse"
+              caption="msg://com.batyrov.erp.screen.qna.questionnaireconfig/questionnaireConfigBrowse.menu"/>
+        <item screen="erp_Question.browse"
+              caption="msg://com.batyrov.erp.screen.qna.question.question/questionBrowse.menu"/>
+    </menu>
 
+    <menu id="application-docs" caption="msg://com.batyrov.erp/menu.application-docs" insertBefore="administration">
 
         <item screen="erp_OutcomingNonCashPayment.browse"
               caption="msg://com.batyrov.erp.screen.docs.payment/outcomingNonCashPaymentBrowse.menu"/>
@@ -13,11 +19,10 @@
         <item screen="erp_IncomingNonCashPayment.browse"
               caption="msg://com.batyrov.erp.screen.docs.payment/incomingNonCashPaymentBrowse.menu"/>
         <item screen="erp_RequestForPurchase.browse"
-              caption="msg://com.batyrov.erp.screen.docs.requestforpurchase/requestForPurchaseBrowse.menu"/>
-
+              caption="msg://com.batyrov.erp.screen.docs.request/requestForPurchaseBrowse.menu"/>
     </menu>
 
-    <menu id="application-references" caption="msg://com.batyrov.erp/menu.application-references" insertBefore="administration">
+    <menu id="application-references" caption="msg://com.batyrov.erp/menu.application-references">
         <item screen="erp_Person.browse" caption="msg://com.batyrov.erp.screen.reference.person/personBrowse.menu"/>
         <item screen="erp_Contract.browse"
               caption="msg://com.batyrov.erp.screen.reference.contract/contractBrowse.menu"/>

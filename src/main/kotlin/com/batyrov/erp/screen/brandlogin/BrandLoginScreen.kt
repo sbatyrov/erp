@@ -104,10 +104,6 @@ open class BrandLoginScreen : Screen() {
         login()
     }
 
-    private fun register() {
-        TODO("Not yet implemented")
-    }
-
     private fun login() {
         val username = usernameField.value
         val password = passwordField.value

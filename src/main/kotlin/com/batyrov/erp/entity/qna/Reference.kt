@@ -1,4 +1,4 @@
-package com.batyrov.qna.entity
+package com.batyrov.erp.entity.qna
 
 import io.jmix.core.annotation.DeletedBy
 import io.jmix.core.annotation.DeletedDate
@@ -12,9 +12,9 @@ import java.util.*
 import javax.persistence.*
 
 @JmixEntity
-@Table(name = "ERP_QUESTION")
-@Entity(name = "erp_Question")
-open class Question {
+@Table(name = "ERP_REFERENCE")
+@Entity(name = "erp_Reference")
+open class Reference {
     @JmixGeneratedValue
     @Column(name = "ID", nullable = false)
     @Id
@@ -52,11 +52,5 @@ open class Question {
     var deletedDate: Date? = null
 
     @Column
-    private val name: String? = null
-
-    @ManyToOne
-    private val questionnaireConfig: QuestionnaireConfig? = null
-
-    @Enumerated(EnumType.ORDINAL)
-    private val questionType: QuestionType? = null
+    var name: String? = null
 }

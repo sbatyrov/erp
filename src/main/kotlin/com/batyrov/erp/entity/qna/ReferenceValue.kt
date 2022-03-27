@@ -1,4 +1,4 @@
-package com.batyrov.qna.entity
+package com.batyrov.erp.entity.qna
 
 import io.jmix.core.annotation.DeletedBy
 import io.jmix.core.annotation.DeletedDate
@@ -52,7 +52,7 @@ open class ReferenceValue {
     var deletedDate: Date? = null
 
     @ManyToOne
-    val reference: Reference? = null
+    var reference: Reference? = null
     @Column
-    val value: String? = null
+    var value: String? = null
 }

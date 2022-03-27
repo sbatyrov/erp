@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1" author="erp">
+        <createTable tableName="ERP_GEO_POINT">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ERP_GEO_POINT"/>
+            </column>
+            <column name="CREATED_BY" type="VARCHAR(255)"/>
+            <column name="CREATED_DATE" type="DATETIME"/>
+            <column name="VERSION" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LAST_MODIFIED_BY" type="VARCHAR(255)"/>
+            <column name="LAST_MODIFIED_DATE" type="DATETIME"/>
+            <column name="DELETED_BY" type="VARCHAR(255)"/>
+            <column name="DELETED_DATE" type="DATETIME"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="code" type="VARCHAR(255)"/>
+            <column name="longitude" type="DOUBLE"/>
+            <column name="latitude" type="DOUBLE"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="2" author="erp">
+        <createTable tableName="ERP_QUESTION">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ERP_QUESTION"/>
+            </column>
+            <column name="VERSION" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="VARCHAR(255)"/>
+            <column name="CREATED_DATE" type="DATETIME"/>
+            <column name="LAST_MODIFIED_BY" type="VARCHAR(255)"/>
+            <column name="LAST_MODIFIED_DATE" type="DATETIME"/>
+            <column name="DELETED_BY" type="VARCHAR(255)"/>
+            <column name="DELETED_DATE" type="DATETIME"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="questionnaireConfig_ID" type="UUID"/>
+            <column name="questionType" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="3" author="erp">
+        <createTable tableName="ERP_QUESTIONNAIRE">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ERP_QUESTIONNAIRE"/>
+            </column>
+            <column name="VERSION" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="VARCHAR(255)"/>
+            <column name="CREATED_DATE" type="DATETIME"/>
+            <column name="LAST_MODIFIED_BY" type="VARCHAR(255)"/>
+            <column name="LAST_MODIFIED_DATE" type="DATETIME"/>
+            <column name="DELETED_BY" type="VARCHAR(255)"/>
+            <column name="DELETED_DATE" type="DATETIME"/>
+            <column name="createDate" type="DATETIME"/>
+            <column name="user_ID" type="UUID"/>
+            <column name="longitude" type="DOUBLE"/>
+            <column name="latitude" type="DOUBLE"/>
+            <column name="geoPoint_ID" type="UUID"/>
+            <column name="task_ID" type="UUID"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="4" author="erp">
+        <createTable tableName="ERP_QUESTIONNAIRE_CONFIG">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ERP_QUESTIONNAIRE_CONFIG"/>
+            </column>
+            <column name="VERSION" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="VARCHAR(255)"/>
+            <column name="CREATED_DATE" type="DATETIME"/>
+            <column name="LAST_MODIFIED_BY" type="VARCHAR(255)"/>
+            <column name="LAST_MODIFIED_DATE" type="DATETIME"/>
+            <column name="DELETED_BY" type="VARCHAR(255)"/>
+            <column name="DELETED_DATE" type="DATETIME"/>
+            <column name="name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="5" author="erp">
+        <createTable tableName="ERP_REFERENCE">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ERP_REFERENCE"/>
+            </column>
+            <column name="VERSION" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="VARCHAR(255)"/>
+            <column name="CREATED_DATE" type="DATETIME"/>
+            <column name="LAST_MODIFIED_BY" type="VARCHAR(255)"/>
+            <column name="LAST_MODIFIED_DATE" type="DATETIME"/>
+            <column name="DELETED_BY" type="VARCHAR(255)"/>
+            <column name="DELETED_DATE" type="DATETIME"/>
+            <column name="name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="6" author="erp">
+        <createTable tableName="ERP_REFERENCE_VALUE">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ERP_REFERENCE_VALUE"/>
+            </column>
+            <column name="VERSION" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="VARCHAR(255)"/>
+            <column name="CREATED_DATE" type="DATETIME"/>
+            <column name="LAST_MODIFIED_BY" type="VARCHAR(255)"/>
+            <column name="LAST_MODIFIED_DATE" type="DATETIME"/>
+            <column name="DELETED_BY" type="VARCHAR(255)"/>
+            <column name="DELETED_DATE" type="DATETIME"/>
+            <column name="reference_ID" type="UUID"/>
+            <column name="value_" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="7" author="erp">
+        <createTable tableName="ERP_RFO_SERVICES">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ERP_RFO_SERVICES"/>
+            </column>
+            <column name="VERSION" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="VARCHAR(255)"/>
+            <column name="CREATED_DATE" type="DATETIME"/>
+            <column name="LAST_MODIFIED_BY" type="VARCHAR(255)"/>
+            <column name="LAST_MODIFIED_DATE" type="DATETIME"/>
+            <column name="DELETED_BY" type="VARCHAR(255)"/>
+            <column name="DELETED_DATE" type="DATETIME"/>
+            <column name="REQUEST_ID" type="UUID"/>
+            <column name="SERVICE_ID" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="COUNT_" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="8" author="erp">
+        <createTable tableName="ERP_RFO_WARES">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ERP_RFO_WARES"/>
+            </column>
+            <column name="VERSION" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="VARCHAR(255)"/>
+            <column name="CREATED_DATE" type="DATETIME"/>
+            <column name="LAST_MODIFIED_BY" type="VARCHAR(255)"/>
+            <column name="LAST_MODIFIED_DATE" type="DATETIME"/>
+            <column name="DELETED_BY" type="VARCHAR(255)"/>
+            <column name="DELETED_DATE" type="DATETIME"/>
+            <column name="WARE_ID" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="REQUEST_ID" type="UUID"/>
+            <column name="COUNT_" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="9" author="erp">
+        <createTable tableName="ERP_SERVICE">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ERP_SERVICE"/>
+            </column>
+            <column name="VERSION" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="VARCHAR(255)"/>
+            <column name="CREATED_DATE" type="DATETIME"/>
+            <column name="LAST_MODIFIED_BY" type="VARCHAR(255)"/>
+            <column name="LAST_MODIFIED_DATE" type="DATETIME"/>
+            <column name="DELETED_BY" type="VARCHAR(255)"/>
+            <column name="DELETED_DATE" type="DATETIME"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="10" author="erp">
+        <createTable tableName="ERP_TASK">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ERP_TASK"/>
+            </column>
+            <column name="VERSION" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="VARCHAR(255)"/>
+            <column name="CREATED_DATE" type="DATETIME"/>
+            <column name="LAST_MODIFIED_BY" type="VARCHAR(255)"/>
+            <column name="LAST_MODIFIED_DATE" type="DATETIME"/>
+            <column name="DELETED_BY" type="VARCHAR(255)"/>
+            <column name="DELETED_DATE" type="DATETIME"/>
+            <column name="status" type="INT"/>
+            <column name="createDate" type="DATETIME"/>
+            <column name="executionDate" type="DATETIME"/>
+            <column name="requiredDate" type="DATETIME"/>
+            <column name="owner_ID" type="UUID"/>
+            <column name="executor_ID" type="UUID"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="11" author="erp">
+        <addColumn tableName="ERP_REQUEST_FOR_PURCHASE_DETAI">
+            <column name="CREATED_BY" type="VARCHAR(255)"/>
+            <column name="CREATED_DATE" type="DATETIME"/>
+            <column name="DELETED_BY" type="VARCHAR(255)"/>
+            <column name="DELETED_DATE" type="DATETIME"/>
+            <column name="LAST_MODIFIED_BY" type="VARCHAR(255)"/>
+            <column name="LAST_MODIFIED_DATE" type="DATETIME"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="12" author="erp">
+        <addColumn tableName="ERP_REQUEST_FOR_PURCHASE_DETAI">
+            <column name="VERSION" type="INT"/>
+        </addColumn>
+
+        <addNotNullConstraint columnName="VERSION" defaultNullValue="0" tableName="ERP_REQUEST_FOR_PURCHASE_DETAI"/>
+    </changeSet>
+    <changeSet id="13" author="erp">
+        <addForeignKeyConstraint baseColumnNames="geoPoint_ID" baseTableName="ERP_QUESTIONNAIRE"
+                                 constraintName="FK_ERPQUESTIONNAIR_ON_GEOPOINT" referencedColumnNames="ID"
+                                 referencedTableName="ERP_GEO_POINT"/>
+    </changeSet>
+    <changeSet id="14" author="erp">
+        <addForeignKeyConstraint baseColumnNames="questionnaireConfig_ID" baseTableName="ERP_QUESTION"
+                                 constraintName="FK_ERPQUESTION_ON_QUESTIONNAIR" referencedColumnNames="ID"
+                                 referencedTableName="ERP_QUESTIONNAIRE_CONFIG"/>
+    </changeSet>
+    <changeSet id="15" author="erp">
+        <addForeignKeyConstraint baseColumnNames="reference_ID" baseTableName="ERP_REFERENCE_VALUE"
+                                 constraintName="FK_ERPREFERENCEVA_ON_REFERENCE" referencedColumnNames="ID"
+                                 referencedTableName="ERP_REFERENCE"/>
+    </changeSet>
+    <changeSet id="16" author="erp">
+        <addForeignKeyConstraint baseColumnNames="task_ID" baseTableName="ERP_QUESTIONNAIRE"
+                                 constraintName="FK_ERP_QUESTIONNAIRE_ON_TASK" referencedColumnNames="ID"
+                                 referencedTableName="ERP_TASK"/>
+    </changeSet>
+    <changeSet id="17" author="erp">
+        <addForeignKeyConstraint baseColumnNames="user_ID" baseTableName="ERP_QUESTIONNAIRE"
+                                 constraintName="FK_ERP_QUESTIONNAIRE_ON_USER" referencedColumnNames="ID"
+                                 referencedTableName="ERP_USER"/>
+    </changeSet>
+    <changeSet id="18" author="erp">
+        <addForeignKeyConstraint baseColumnNames="REQUEST_ID" baseTableName="ERP_RFO_SERVICES"
+                                 constraintName="FK_ERP_RFO_SERVICES_ON_REQUEST" referencedColumnNames="ID"
+                                 referencedTableName="ERP_REQUEST_FOR_OUTCOME"/>
+    </changeSet>
+    <changeSet id="19" author="erp">
+        <addForeignKeyConstraint baseColumnNames="SERVICE_ID" baseTableName="ERP_RFO_SERVICES"
+                                 constraintName="FK_ERP_RFO_SERVICES_ON_SERVICE" referencedColumnNames="ID"
+                                 referencedTableName="ERP_SERVICE"/>
+    </changeSet>
+    <changeSet id="20" author="erp">
+        <addForeignKeyConstraint baseColumnNames="REQUEST_ID" baseTableName="ERP_RFO_WARES"
+                                 constraintName="FK_ERP_RFO_WARES_ON_REQUEST" referencedColumnNames="ID"
+                                 referencedTableName="ERP_REQUEST_FOR_OUTCOME"/>
+    </changeSet>
+    <changeSet id="21" author="erp">
+        <addForeignKeyConstraint baseColumnNames="WARE_ID" baseTableName="ERP_RFO_WARES"
+                                 constraintName="FK_ERP_RFO_WARES_ON_WARE" referencedColumnNames="ID"
+                                 referencedTableName="ERP_WARE"/>
+    </changeSet>
+    <changeSet id="22" author="erp">
+        <addForeignKeyConstraint baseColumnNames="executor_ID" baseTableName="ERP_TASK"
+                                 constraintName="FK_ERP_TASK_ON_EXECUTOR" referencedColumnNames="ID"
+                                 referencedTableName="ERP_USER"/>
+    </changeSet>
+    <changeSet id="23" author="erp">
+        <addForeignKeyConstraint baseColumnNames="owner_ID" baseTableName="ERP_TASK"
+                                 constraintName="FK_ERP_TASK_ON_OWNER" referencedColumnNames="ID"
+                                 referencedTableName="ERP_USER"/>
+    </changeSet>
+</databaseChangeLog>

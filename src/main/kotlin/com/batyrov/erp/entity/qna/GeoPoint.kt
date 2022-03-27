@@ -1,6 +1,6 @@
-package com.batyrov.qna.entity
+package com.batyrov.erp.entity.qna
 
-import com.batyrov.erp.entity.reference.User
+import com.batyrov.erp.entity.reference.Company
 import io.jmix.core.annotation.DeletedBy
 import io.jmix.core.annotation.DeletedDate
 import io.jmix.core.entity.annotation.JmixGeneratedValue
@@ -13,17 +13,13 @@ import java.util.*
 import javax.persistence.*
 
 @JmixEntity
-@Table(name = "ERP_TASK")
-@Entity(name = "erp_Task")
-open class Task {
+@Table(name = "ERP_GEO_POINT")
+@Entity(name = "erp_GeoPoint")
+open class GeoPoint {
     @JmixGeneratedValue
     @Column(name = "ID", nullable = false)
     @Id
     var id: UUID? = null
-
-    @Column(name = "VERSION", nullable = false)
-    @Version
-    var version: Int? = null
 
     @CreatedBy
     @Column(name = "CREATED_BY")
@@ -33,6 +29,10 @@ open class Task {
     @Column(name = "CREATED_DATE")
     @Temporal(TemporalType.TIMESTAMP)
     var createdDate: Date? = null
+
+    @Column(name = "VERSION", nullable = false)
+    @Version
+    var version: Int? = null
 
     @LastModifiedBy
     @Column(name = "LAST_MODIFIED_BY")
@@ -53,21 +53,15 @@ open class Task {
     var deletedDate: Date? = null
 
     @Column
-    @Enumerated(EnumType.ORDINAL)
-    val status: TaskStatus? = null
+    var name: String? = null
 
     @Column
-    val createDate: Date? = null
+    var code: String? = null
 
     @Column
-    val executionDate: Date? = null
+    var longitude: Double? = null
 
     @Column
-    val requiredDate: Date? = null
+    var latitude: Double? = null
 
-    @ManyToOne
-    val owner: User? = null
-
-    @ManyToOne
-    val executor: User? = null
 }

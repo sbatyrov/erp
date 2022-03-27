@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://jmix.io/schema/ui/window"
+        xmlns:c="http://jmix.io/schema/ui/jpql-condition"
+        xmlns:dynattr="http://jmix.io/schema/dynattr/ui"
+        caption="questionBrowse.caption"
+        focusComponent="questionsTable">
+    <data readOnly="true">
+        <collection id="questionsDc"
+                    class="com.batyrov.erp.entity.qna.Question">
+            <fetchPlan extends="_base"/>
+            <loader id="questionsDl">
+                <query>
+                    <![CDATA[select e from erp_Question e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <dynattr:dynamicAttributes/>
+        <screenSettings id="settingsFacet" auto="true"/>
+    </facets>
+    <actions>
+        <action id="lookupSelectAction"
+                caption="msg:///actions.Select"
+                icon="LOOKUP_OK"
+                primary="true"
+                shortcut="${COMMIT_SHORTCUT}"/>
+        <action id="lookupCancelAction"
+                caption="msg:///actions.Cancel"
+                icon="LOOKUP_CANCEL"/>
+    </actions>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="questionsTable" spacing="true">
+        <filter id="filter"
+                dataLoader="questionsDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="questionsTable"
+                    width="100%"
+                    dataContainer="questionsDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="name"/>
+                <column id="questionType"/>
+            </columns>
+            <simplePagination/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="questionsTable.create"/>
+                <button id="editBtn" action="questionsTable.edit"/>
+                <button id="removeBtn" action="questionsTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

@@ -1,4 +1,4 @@
-package com.batyrov.qna.entity
+package com.batyrov.erp.entity.qna
 
 import com.batyrov.erp.entity.reference.User
 import io.jmix.core.annotation.DeletedBy
@@ -13,9 +13,9 @@ import java.util.*
 import javax.persistence.*
 
 @JmixEntity
-@Table(name = "ERP_QUESTIONNAIRE")
-@Entity(name = "erp_Questionnaire")
-open class Questionnaire {
+@Table(name = "ERP_TASK")
+@Entity(name = "erp_Task")
+open class Task {
     @JmixGeneratedValue
     @Column(name = "ID", nullable = false)
     @Id
@@ -53,20 +53,21 @@ open class Questionnaire {
     var deletedDate: Date? = null
 
     @Column
-     val createDate: Date? = null
-
-    @ManyToOne
-     val user: User? = null
+    @Enumerated(EnumType.ORDINAL)
+    var status: TaskStatus? = null
 
     @Column
-     val longitude: Double? = null
+    var createDate: Date? = null
 
     @Column
-     val latitude: Double? = null
+    var executionDate: Date? = null
+
+    @Column
+    var requiredDate: Date? = null
 
     @ManyToOne
-     val geoPoint: GeoPoint? = null
+    var owner: User? = null
 
     @ManyToOne
-     val task: Task? = null
+    var executor: User? = null
 }

@@ -1,4 +1,4 @@
-package com.batyrov.qna.entity
+package com.batyrov.erp.entity.qna
 
 import com.batyrov.erp.entity.reference.Company
 import io.jmix.core.annotation.DeletedBy
@@ -13,13 +13,17 @@ import java.util.*
 import javax.persistence.*
 
 @JmixEntity
-@Table(name = "ERP_GEO_POINT")
-@Entity(name = "erp_GeoPoint")
-open class GeoPoint {
+@Table(name = "ERP_QUESTIONNAIRE_CONFIG")
+@Entity(name = "erp_QuestionnaireConfig")
+open class QuestionnaireConfig {
     @JmixGeneratedValue
     @Column(name = "ID", nullable = false)
     @Id
     var id: UUID? = null
+
+    @Column(name = "VERSION", nullable = false)
+    @Version
+    var version: Int? = null
 
     @CreatedBy
     @Column(name = "CREATED_BY")
@@ -29,10 +33,6 @@ open class GeoPoint {
     @Column(name = "CREATED_DATE")
     @Temporal(TemporalType.TIMESTAMP)
     var createdDate: Date? = null
-
-    @Column(name = "VERSION", nullable = false)
-    @Version
-    var version: Int? = null
 
     @LastModifiedBy
     @Column(name = "LAST_MODIFIED_BY")
@@ -53,15 +53,6 @@ open class GeoPoint {
     var deletedDate: Date? = null
 
     @Column
-    private val name: String? = null
-
-    @Column
-    private val code: String? = null
-
-    @Column
-    private val longitude: Double? = null
-
-    @Column
-    private val latitude: Double? = null
+    var name: String? = null
 
 }
