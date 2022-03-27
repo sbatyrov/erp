@@ -50,6 +50,9 @@ open class User : JmixUserDetails, HasTimeZone {
     @Column(name = "ACTIVE")
     var active: Boolean? = true
 
+    @ManyToOne
+    var company: Company? = null
+
     @Column(name = "TIME_ZONE_ID")
     @get:JvmName("getTimeZoneId_")
     var timeZoneId: String? = null;

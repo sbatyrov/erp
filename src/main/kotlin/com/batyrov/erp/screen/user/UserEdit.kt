@@ -1,5 +1,6 @@
 package com.batyrov.erp.screen.user
 
+import com.batyrov.erp.entity.reference.Company
 import com.batyrov.erp.entity.reference.User
 import io.jmix.core.EntityStates
 import io.jmix.ui.Notifications
@@ -41,6 +42,7 @@ open class UserEdit : StandardEditor<User>() {
 
     @Autowired
     private lateinit var timeZoneField: ComboBox<String>
+
 
     @Subscribe
     fun onInitEntity(event: InitEntityEvent<User>?) {
