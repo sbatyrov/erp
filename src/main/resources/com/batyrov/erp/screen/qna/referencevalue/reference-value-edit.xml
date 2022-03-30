@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <window xmlns="http://jmix.io/schema/ui/window"
         xmlns:dynattr="http://jmix.io/schema/dynattr/ui"
-        caption="msg://questionEdit.caption"
+        caption="msg://referenceValueEdit.caption"
         focusComponent="form">
     <data>
-        <instance id="questionDc"
-                  class="com.batyrov.erp.entity.qna.Question">
+        <instance id="referenceValueDc"
+                  class="com.batyrov.erp.entity.qna.ReferenceValue">
             <fetchPlan extends="_base">
-                <property name="questionnaireConfig" fetchPlan="_base"/>
+                <property name="reference" fetchPlan="_base"/>
             </fetchPlan>
             <loader/>
         </instance>
@@ -29,17 +29,15 @@
     <dialogMode height="600"
                 width="800"/>
     <layout spacing="true" expand="editActions">
-        <form id="form" dataContainer="questionDc">
+        <form id="form" dataContainer="referenceValueDc">
             <column width="350px">
-                <textField id="nameField" property="name"/>
-                <entityPicker id="questionnaireConfigField" property="questionnaireConfig">
+                <entityPicker id="referenceField" property="reference">
                     <actions>
                         <action id="entityLookup" type="entity_lookup"/>
                         <action id="entityClear" type="entity_clear"/>
                     </actions>
                 </entityPicker>
-                <comboBox id="answerTypeField" property="answerType"/>
-                <checkBox id="nullableField" property="nullable"/>
+                <textField id="valueField" property="value"/>
             </column>
         </form>
         <hbox id="editActions" spacing="true">

@@ -2,17 +2,19 @@
 <window xmlns="http://jmix.io/schema/ui/window"
         xmlns:c="http://jmix.io/schema/ui/jpql-condition"
         xmlns:dynattr="http://jmix.io/schema/dynattr/ui"
-        caption="msg://questionBrowse.caption"
-        focusComponent="questionsTable">
+        caption="msg://questionnaireBrowse.caption"
+        focusComponent="questionnairesTable">
     <data readOnly="true">
-        <collection id="questionsDc"
-                    class="com.batyrov.erp.entity.qna.Question">
+        <collection id="questionnairesDc"
+                    class="com.batyrov.erp.entity.qna.Questionnaire">
             <fetchPlan extends="_base">
-                <property name="questionnaireConfig" fetchPlan="_base"/>
+                <property name="user" fetchPlan="_base"/>
+                <property name="geoPoint" fetchPlan="_base"/>
+                <property name="task" fetchPlan="_base"/>
             </fetchPlan>
-            <loader id="questionsDl">
+            <loader id="questionnairesDl">
                 <query>
-                    <![CDATA[select e from erp_Question e]]>
+                    <![CDATA[select e from erp_Questionnaire e]]>
                 </query>
             </loader>
         </collection>
@@ -34,33 +36,35 @@
     </actions>
     <dialogMode height="600"
                 width="800"/>
-    <layout expand="questionsTable" spacing="true">
+    <layout expand="questionnairesTable" spacing="true">
         <filter id="filter"
-                dataLoader="questionsDl">
+                dataLoader="questionnairesDl">
             <properties include=".*"/>
         </filter>
-        <groupTable id="questionsTable"
-                    width="100%"
-                    dataContainer="questionsDc">
+        <dataGrid id="questionnairesTable"
+                  width="100%"
+                  dataContainer="questionnairesDc">
             <actions>
                 <action id="create" type="create"/>
                 <action id="edit" type="edit"/>
                 <action id="remove" type="remove"/>
             </actions>
             <columns>
-                <column id="name"/>
-                <column id="questionnaireConfig"/>
-                <column id="answerType"/>
-                <column id="nullable"/>
+                <column property="createDate" id="createDate"/>
+                <column property="user" id="user"/>
+                <column property="longitude" id="longitude"/>
+                <column property="latitude" id="latitude"/>
+                <column property="geoPoint" id="geoPoint"/>
+                <column property="task" id="task"/>
             </columns>
             <simplePagination/>
             <buttonsPanel id="buttonsPanel"
                           alwaysVisible="true">
-                <button id="createBtn" action="questionsTable.create"/>
-                <button id="editBtn" action="questionsTable.edit"/>
-                <button id="removeBtn" action="questionsTable.remove"/>
+                <button id="createBtn" action="questionnairesTable.create"/>
+                <button id="editBtn" action="questionnairesTable.edit"/>
+                <button id="removeBtn" action="questionnairesTable.remove"/>
             </buttonsPanel>
-        </groupTable>
+        </dataGrid>
         <hbox id="lookupActions" spacing="true" visible="false">
             <button action="lookupSelectAction"/>
             <button action="lookupCancelAction"/>

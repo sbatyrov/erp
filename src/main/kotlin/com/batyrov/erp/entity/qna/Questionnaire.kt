@@ -53,20 +53,21 @@ open class Questionnaire {
     var deletedDate: Date? = null
 
     @Column
+    @Temporal(TemporalType.TIMESTAMP)
      var createDate: Date? = null
 
     @ManyToOne
      var user: User? = null
 
-    @Column
+    @Column(name = "LONGITUDE")
      var longitude: Double? = null
 
-    @Column
+    @Column(name = "LATITUDE")
      var latitude: Double? = null
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
      var geoPoint: GeoPoint? = null
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
      var task: Task? = null
 }

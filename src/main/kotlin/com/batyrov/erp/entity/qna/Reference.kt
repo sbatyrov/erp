@@ -1,9 +1,11 @@
 package com.batyrov.erp.entity.qna
 
+import com.batyrov.erp.entity.docs.RFOWares
 import io.jmix.core.annotation.DeletedBy
 import io.jmix.core.annotation.DeletedDate
 import io.jmix.core.entity.annotation.JmixGeneratedValue
 import io.jmix.core.metamodel.annotation.JmixEntity
+import org.jetbrains.annotations.NotNull
 import org.springframework.data.annotation.CreatedBy
 import org.springframework.data.annotation.CreatedDate
 import org.springframework.data.annotation.LastModifiedBy
@@ -51,6 +53,10 @@ open class Reference {
     @Temporal(TemporalType.TIMESTAMP)
     var deletedDate: Date? = null
 
-    @Column
+    @NotNull
+    @Column(name="R_NAME", nullable = false)
     var name: String? = null
+
+    @OneToMany(mappedBy = "reference")
+    var values : MutableList<ReferenceValue> = mutableListOf()
 }

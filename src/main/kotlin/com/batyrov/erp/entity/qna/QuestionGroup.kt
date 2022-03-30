@@ -1,6 +1,5 @@
 package com.batyrov.erp.entity.qna
 
-import com.batyrov.erp.entity.reference.Company
 import io.jmix.core.annotation.DeletedBy
 import io.jmix.core.annotation.DeletedDate
 import io.jmix.core.entity.annotation.JmixGeneratedValue
@@ -13,9 +12,9 @@ import java.util.*
 import javax.persistence.*
 
 @JmixEntity
-@Table(name = "ERP_QUESTIONNAIRE_CONFIG")
-@Entity(name = "erp_QuestionnaireConfig")
-open class QuestionnaireConfig {
+@Table(name = "ERP_QUESTION_GROUP")
+@Entity(name = "erp_QuestionGroup")
+open class QuestionGroup {
     @JmixGeneratedValue
     @Column(name = "ID", nullable = false)
     @Id
@@ -52,10 +51,21 @@ open class QuestionnaireConfig {
     @Temporal(TemporalType.TIMESTAMP)
     var deletedDate: Date? = null
 
-    @Column(name = "QC_NAME")
-    var name: String? = null
+    @Column(name = "_NAME")
+    var name : String? = null
 
-    @OneToMany(mappedBy = "questionnaireConfig")
+    @OneToMany(mappedBy = "questionGroup")
     var questions : MutableList<Question> = mutableListOf()
+
+    @ManyToOne
+    var parentGroup : QuestionGroup? = null
+
+    @OneToMany(mappedBy = "parentGroup")
+    var groups : MutableList<QuestionGroup> = mutableListOf()
+
+    // Если указана группа запуска, то это означает что после заполнения данного поля необходимо будет запустить
+    // вопросы из группы в таком количестве, сколько было введено
+    @ManyToMany(mappedBy = "executeQuestionGroups")
+    var executeQuestions : MutableList<Question> = mutableListOf()
 
 }

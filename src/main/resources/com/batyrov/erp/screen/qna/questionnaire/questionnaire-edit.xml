@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://jmix.io/schema/ui/window"
+        xmlns:dynattr="http://jmix.io/schema/dynattr/ui"
+        caption="msg://questionnaireEdit.caption"
+        focusComponent="form">
+    <data>
+        <instance id="questionnaireDc"
+                  class="com.batyrov.erp.entity.qna.Questionnaire">
+            <fetchPlan extends="_base">
+                <property name="user" fetchPlan="_base"/>
+                <property name="geoPoint" fetchPlan="_base"/>
+                <property name="task" fetchPlan="_base"/>
+            </fetchPlan>
+            <loader/>
+        </instance>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <dynattr:dynamicAttributes/>
+        <screenSettings id="settingsFacet" auto="true"/>
+    </facets>
+    <actions>
+        <action id="windowCommitAndClose" caption="msg:///actions.Ok"
+                icon="EDITOR_OK"
+                primary="true"
+                shortcut="${COMMIT_SHORTCUT}"/>
+        <action id="windowClose"
+                caption="msg:///actions.Close"
+                icon="EDITOR_CANCEL"/>
+    </actions>
+    <dialogMode height="600"
+                width="800"/>
+    <layout spacing="true" expand="scrollBox">
+        <scrollBox id="scrollBox" spacing="true">
+            <form id="form" dataContainer="questionnaireDc">
+                <column width="350px">
+                    <dateField id="createDateField" property="createDate"/>
+                    <entityPicker id="userField" property="user">
+                        <actions>
+                            <action id="entityLookup" type="entity_lookup"/>
+                            <action id="entityClear" type="entity_clear"/>
+                        </actions>
+                    </entityPicker>
+                    <textField id="longitudeField" property="longitude"/>
+                    <textField id="latitudeField" property="latitude"/>
+                    <entityPicker id="geoPointField" property="geoPoint">
+                        <actions>
+                            <action id="entityLookup" type="entity_lookup"/>
+                            <action id="entityClear" type="entity_clear"/>
+                        </actions>
+                    </entityPicker>
+                    <entityPicker id="taskField" property="task">
+                        <actions>
+                            <action id="entityLookup" type="entity_lookup"/>
+                            <action id="entityClear" type="entity_clear"/>
+                        </actions>
+                    </entityPicker>
+                </column>
+            </form>
+        </scrollBox>
+        <hbox id="editActions" spacing="true">
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="closeBtn" action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

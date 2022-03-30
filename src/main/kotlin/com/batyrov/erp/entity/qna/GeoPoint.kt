@@ -5,6 +5,7 @@ import io.jmix.core.annotation.DeletedBy
 import io.jmix.core.annotation.DeletedDate
 import io.jmix.core.entity.annotation.JmixGeneratedValue
 import io.jmix.core.metamodel.annotation.JmixEntity
+import org.jetbrains.annotations.NotNull
 import org.springframework.data.annotation.CreatedBy
 import org.springframework.data.annotation.CreatedDate
 import org.springframework.data.annotation.LastModifiedBy
@@ -52,16 +53,17 @@ open class GeoPoint {
     @Temporal(TemporalType.TIMESTAMP)
     var deletedDate: Date? = null
 
-    @Column
+    @NotNull
+    @Column(name= "GP_NAME", nullable = false)
     var name: String? = null
 
-    @Column
+    @Column(name="CODE")
     var code: String? = null
 
-    @Column
+    @Column(name = "LONGITUDE")
     var longitude: Double? = null
 
-    @Column
+    @Column(name = "LATITUDE")
     var latitude: Double? = null
 
 }

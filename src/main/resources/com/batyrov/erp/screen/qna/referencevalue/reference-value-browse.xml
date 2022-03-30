@@ -2,17 +2,17 @@
 <window xmlns="http://jmix.io/schema/ui/window"
         xmlns:c="http://jmix.io/schema/ui/jpql-condition"
         xmlns:dynattr="http://jmix.io/schema/dynattr/ui"
-        caption="msg://questionBrowse.caption"
-        focusComponent="questionsTable">
+        caption="msg://referenceValueBrowse.caption"
+        focusComponent="referenceValuesTable">
     <data readOnly="true">
-        <collection id="questionsDc"
-                    class="com.batyrov.erp.entity.qna.Question">
-            <fetchPlan extends="_base">
-                <property name="questionnaireConfig" fetchPlan="_base"/>
+        <collection id="referenceValuesDc"
+                    class="com.batyrov.erp.entity.qna.ReferenceValue">
+            <fetchPlan extends="_base" >
+                <property name="reference" fetchPlan="_base" fetch="JOIN"/>
             </fetchPlan>
-            <loader id="questionsDl">
+            <loader id="referenceValuesDl">
                 <query>
-                    <![CDATA[select e from erp_Question e]]>
+                    <![CDATA[select e from erp_ReferenceValue e]]>
                 </query>
             </loader>
         </collection>
@@ -34,31 +34,29 @@
     </actions>
     <dialogMode height="600"
                 width="800"/>
-    <layout expand="questionsTable" spacing="true">
+    <layout expand="referenceValuesTable" spacing="true">
         <filter id="filter"
-                dataLoader="questionsDl">
+                dataLoader="referenceValuesDl">
             <properties include=".*"/>
         </filter>
-        <groupTable id="questionsTable"
+        <groupTable id="referenceValuesTable"
                     width="100%"
-                    dataContainer="questionsDc">
+                    dataContainer="referenceValuesDc">
             <actions>
                 <action id="create" type="create"/>
                 <action id="edit" type="edit"/>
                 <action id="remove" type="remove"/>
             </actions>
             <columns>
-                <column id="name"/>
-                <column id="questionnaireConfig"/>
-                <column id="answerType"/>
-                <column id="nullable"/>
+                <column id="reference"/>
+                <column id="value"/>
             </columns>
             <simplePagination/>
             <buttonsPanel id="buttonsPanel"
                           alwaysVisible="true">
-                <button id="createBtn" action="questionsTable.create"/>
-                <button id="editBtn" action="questionsTable.edit"/>
-                <button id="removeBtn" action="questionsTable.remove"/>
+                <button id="createBtn" action="referenceValuesTable.create"/>
+                <button id="editBtn" action="referenceValuesTable.edit"/>
+                <button id="removeBtn" action="referenceValuesTable.remove"/>
             </buttonsPanel>
         </groupTable>
         <hbox id="lookupActions" spacing="true" visible="false">

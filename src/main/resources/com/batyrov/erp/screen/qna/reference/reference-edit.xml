@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <window xmlns="http://jmix.io/schema/ui/window"
         xmlns:dynattr="http://jmix.io/schema/dynattr/ui"
-        caption="msg://questionnaireConfigEdit.caption"
+        caption="msg://referenceEdit.caption"
         focusComponent="form">
     <data>
-        <instance id="questionnaireConfigDc"
-                  class="com.batyrov.erp.entity.qna.QuestionnaireConfig">
+        <instance id="referenceDc"
+                  class="com.batyrov.erp.entity.qna.Reference">
             <fetchPlan extends="_base">
-                <property name="questions" fetchPlan="_base" />
+                <property name="values" fetchPlan="_base"/>
             </fetchPlan>
             <loader/>
-            <collection id="questionsDc" property="questions" />
+            <collection id="refValuesDc" property="values" />
         </instance>
     </data>
     <facets>
@@ -31,30 +31,28 @@
                 width="800"/>
     <layout spacing="true" expand="editActions">
         <tabSheet id="tabSheet">
-            <tab id="main">
-                <form id="form" dataContainer="questionnaireConfigDc">
+            <tab id="main" caption="msg://com.batyrov.erp.screen.qna.reference/reference-edit.caption">
+                <form id="form" dataContainer="referenceDc">
                     <column width="350px">
                         <textField id="nameField" property="name"/>
                     </column>
                 </form>
             </tab>
-            <tab id="questionTab">
-                <groupTable id="questionTable" dataContainer="questionsDc"  width="100%" height="100%" >
+            <tab id="refValueTab" caption="msg://com.batyrov.erp.screen.qna.reference/reference-value-edit.caption">
+                <groupTable id="refValueTable" dataContainer="refValuesDc"  width="100%" height="100%" >
                     <actions>
                         <action id="create" type="create"/>
                         <action id="edit" type="edit"/>
                         <action id="remove" type="remove"/>
                     </actions>
                     <columns>
-                        <column id="name"/>
-                        <column id="answerType"/>
-                        <column id="nullable"/>
+                        <column id="value"  />
                     </columns>
                     <buttonsPanel id="buttonsPanel"
                                   alwaysVisible="true">
-                        <button id="createBtn" action="questionTable.create"/>
-                        <button id="editBtn" action="questionTable.edit"/>
-                        <button id="removeBtn" action="questionTable.remove"/>
+                        <button id="createBtn" action="refValueTable.create"/>
+                        <button id="editBtn" action="refValueTable.edit"/>
+                        <button id="removeBtn" action="refValueTable.remove"/>
                     </buttonsPanel>
                 </groupTable>
             </tab>

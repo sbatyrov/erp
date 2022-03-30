@@ -4,11 +4,19 @@
     <menu id="application-qna" caption="msg://com.batyrov.erp/menu.application-qna">
         <item screen="erp_QuestionnaireConfig.browse"
               caption="msg://com.batyrov.erp.screen.qna.questionnaireconfig/questionnaireConfigBrowse.menu"/>
-        <item screen="erp_Question.browse"
-              caption="msg://com.batyrov.erp.screen.qna.question.question/questionBrowse.menu"/>
+        <item screen="erp_Question.browse" caption="msg://com.batyrov.erp.screen.qna.question/questionBrowse.menu"/>
+        <separator/>
+        <item screen="erp_GeoPoint.browse" caption="msg://com.batyrov.erp.screen.qna.geopoint/geoPointBrowse.menu"/>
+        <item screen="erp_Reference.browse" caption="msg://com.batyrov.erp.screen.qna.reference/referenceBrowse.menu"/>
+        <item screen="erp_ReferenceValue.browse"
+              caption="msg://com.batyrov.erp.screen.qna.referencevalue/referenceValueBrowse.menu"/>
+        <separator/>
+        <item screen="erp_Questionnaire.browse"
+              caption="msg://com.batyrov.erp.screen.qna.questionnaire/questionnaireBrowse.menu"/>
+        <separator/>
     </menu>
 
-    <menu id="application-docs" caption="msg://com.batyrov.erp/menu.application-docs" insertBefore="administration">
+    <menu id="application-docs" caption="msg://com.batyrov.erp/menu.application-docs" >
 
         <item screen="erp_OutcomingNonCashPayment.browse"
               caption="msg://com.batyrov.erp.screen.docs.payment/outcomingNonCashPaymentBrowse.menu"/>
@@ -57,7 +65,7 @@
         <item screen="erp_IncomeLedger.browse" caption="msg://com.batyrov.erp.screen.ledger/incomeLedgerBrowse.menu"/>
     </menu>
 
-    <menu id="application" caption="msg://com.batyrov.erp/menu.application">
+    <menu id="application" caption="msg://com.batyrov.erp/menu.application" insertBefore="administration">
         <item screen="erp_User.browse" caption="msg://com.batyrov.erp.screen.user/UserBrowse.caption"/>
         <item screen="erp_User.browse2" caption="msg://com.batyrov.erp.screen.user/userBrowse2.menu"/>
         <item screen="themeSettingsScreen" caption="msg://io.jmix.ui.app.themesettings/themeSettings.caption"/>

@@ -1,6 +1,6 @@
-package com.batyrov.erp.entity.qna
+package com.batyrov.erp.entity.qna.answer
 
-import com.batyrov.erp.entity.reference.Company
+import com.batyrov.erp.entity.qna.Question
 import io.jmix.core.annotation.DeletedBy
 import io.jmix.core.annotation.DeletedDate
 import io.jmix.core.entity.annotation.JmixGeneratedValue
@@ -13,9 +13,10 @@ import java.util.*
 import javax.persistence.*
 
 @JmixEntity
-@Table(name = "ERP_QUESTIONNAIRE_CONFIG")
-@Entity(name = "erp_QuestionnaireConfig")
-open class QuestionnaireConfig {
+@Table(name = "ERP_ANSWER")
+@Entity(name = "erp_Answer")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+open class Answer {
     @JmixGeneratedValue
     @Column(name = "ID", nullable = false)
     @Id
@@ -24,15 +25,6 @@ open class QuestionnaireConfig {
     @Column(name = "VERSION", nullable = false)
     @Version
     var version: Int? = null
-
-    @CreatedBy
-    @Column(name = "CREATED_BY")
-    var createdBy: String? = null
-
-    @CreatedDate
-    @Column(name = "CREATED_DATE")
-    @Temporal(TemporalType.TIMESTAMP)
-    var createdDate: Date? = null
 
     @LastModifiedBy
     @Column(name = "LAST_MODIFIED_BY")
@@ -43,6 +35,15 @@ open class QuestionnaireConfig {
     @Temporal(TemporalType.TIMESTAMP)
     var lastModifiedDate: Date? = null
 
+    @CreatedBy
+    @Column(name = "CREATED_BY")
+    var createdBy: String? = null
+
+    @CreatedDate
+    @Column(name = "CREATED_DATE")
+    @Temporal(TemporalType.TIMESTAMP)
+    var createdDate: Date? = null
+
     @DeletedBy
     @Column(name = "DELETED_BY")
     var deletedBy: String? = null
@@ -52,10 +53,7 @@ open class QuestionnaireConfig {
     @Temporal(TemporalType.TIMESTAMP)
     var deletedDate: Date? = null
 
-    @Column(name = "QC_NAME")
-    var name: String? = null
-
-    @OneToMany(mappedBy = "questionnaireConfig")
-    var questions : MutableList<Question> = mutableListOf()
+    @ManyToOne(fetch = FetchType.LAZY)
+    var question: Question? = null
 
 }

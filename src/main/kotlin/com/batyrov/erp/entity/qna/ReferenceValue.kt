@@ -4,6 +4,7 @@ import io.jmix.core.annotation.DeletedBy
 import io.jmix.core.annotation.DeletedDate
 import io.jmix.core.entity.annotation.JmixGeneratedValue
 import io.jmix.core.metamodel.annotation.JmixEntity
+import org.jetbrains.annotations.NotNull
 import org.springframework.data.annotation.CreatedBy
 import org.springframework.data.annotation.CreatedDate
 import org.springframework.data.annotation.LastModifiedBy
@@ -51,8 +52,16 @@ open class ReferenceValue {
     @Temporal(TemporalType.TIMESTAMP)
     var deletedDate: Date? = null
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     var reference: Reference? = null
-    @Column
+
+    @NotNull
+    @Column(name = "VALUE")
     var value: String? = null
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    var referenceValue : ReferenceValue? = null
+
+    @OneToMany(mappedBy = "referenceValue")
+    var referenceValueList : MutableList<ReferenceValue> = mutableListOf()
 }

@@ -1,5 +1,6 @@
 package com.batyrov.erp.entity.qna
 
+import com.batyrov.erp.entity.docs.DocumentStatus
 import io.jmix.core.annotation.DeletedBy
 import io.jmix.core.annotation.DeletedDate
 import io.jmix.core.entity.annotation.JmixGeneratedValue
@@ -54,9 +55,27 @@ open class Question {
     @Column
     var name: String? = null
 
-    @ManyToOne
+    @Column(name="NULLABLE", nullable = false)
+    var nullable: Boolean? = true
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
     var questionnaireConfig: QuestionnaireConfig? = null
 
-    @Enumerated(EnumType.ORDINAL)
-    var questionType: QuestionType? = null
+    @ManyToOne(fetch = FetchType.LAZY)
+    var questionGroup : QuestionGroup? = null
+
+
+    @Column(name="ANSWER_TYPE", nullable = false)
+    private var answerType: Int? = null
+
+    // Если указана группа запуска, то это означает что после заполнения данного поля необходимо будет запустить
+    // вопросы из группы в таком количестве, сколько было введено
+    @ManyToMany
+    var executeQuestionGroups : MutableList<QuestionGroup> = mutableListOf()
+
+    fun getAnswerType(): AnswerType? = answerType?.let { AnswerType.fromId(it) }
+    fun setAnswerType(answerType: AnswerType?) {
+        this.answerType = answerType?.id
+    }
 }

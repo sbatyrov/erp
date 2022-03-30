@@ -1,5 +1,6 @@
 package com.batyrov.erp.entity.qna
 
+import com.batyrov.erp.entity.docs.DocumentStatus
 import com.batyrov.erp.entity.reference.User
 import io.jmix.core.annotation.DeletedBy
 import io.jmix.core.annotation.DeletedDate
@@ -52,22 +53,26 @@ open class Task {
     @Temporal(TemporalType.TIMESTAMP)
     var deletedDate: Date? = null
 
-    @Column
-    @Enumerated(EnumType.ORDINAL)
-    var status: TaskStatus? = null
-
-    @Column
+    @Column(name = "CREATE_DATE")
     var createDate: Date? = null
 
-    @Column
+    @Column(name = "EXEC_DATE")
     var executionDate: Date? = null
 
-    @Column
+    @Column(name = "REQ_DATE")
     var requiredDate: Date? = null
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     var owner: User? = null
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     var executor: User? = null
+
+    @Column(name = "STATUS", nullable = false)
+    private var status: Int? = null
+
+    fun getStatus(): TaskStatus? = status?.let { TaskStatus.fromId(it) }
+    fun setStatus(status: TaskStatus?) {
+        this.status = status?.id
+    }
 }
